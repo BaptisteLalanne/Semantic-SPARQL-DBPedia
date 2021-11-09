@@ -1,5 +1,5 @@
-export class request{
-    pageClub = (nomClub) => {
+export class listeRequest{
+    static pageClub = (nomClub) => {
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbr: <http://dbpedia.org/resource/>
@@ -33,7 +33,7 @@ export class request{
         }`;
     }
 
-    listClub = () => {
+    static listClub = () => {
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbr: <http://dbpedia.org/resource/>
@@ -48,7 +48,7 @@ export class request{
         }`
     }
 
-    meilleurButeurParClub = () => {
+    static meilleurButeurParClub = () => {
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbr: <http://dbpedia.org/resource/>
