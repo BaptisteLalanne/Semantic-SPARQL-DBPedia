@@ -1,14 +1,5 @@
 import { listeRequest } from "./liste_request.js";
 
-function e(tag, text, parent, classs=null, id=null) {
-	let o = document.createElement(tag)
-	o.appendChild(document.createTextNode(text))
-	o.id = id
-	o.classList.add(classs)
-	parent.appendChild(o)
-	return o
-}
-
 document.addEventListener("DOMContentLoaded", function() {
 
     // get dom elements
