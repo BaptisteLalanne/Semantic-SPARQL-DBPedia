@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function() {
     search(req, (data) => {
 
         let tab_objects = data.results.bindings;
-        console.log(tab_objects);
         let tab_players = tab_objects.map(x => x["joueursNoms"]["value"])
 
         for (let p of tab_players) {
