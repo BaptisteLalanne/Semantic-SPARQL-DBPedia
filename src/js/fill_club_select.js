@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // get dom elements
     let clubs = document.querySelector("#clubs");
+    let clubs_compare = document.querySelector("#clubs-compare");
 
     console.log("fill_club_select.js loaded!");
     let req = listeRequest.listClub();
@@ -24,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         for (let c of tab_clubs) {
             e("option", c, clubs);
+            e("option", c, clubs_compare);
         }
 
     });
