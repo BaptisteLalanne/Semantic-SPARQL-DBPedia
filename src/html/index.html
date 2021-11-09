@@ -23,7 +23,6 @@
 <body>
 <div id="main" class="d-flex flex-column justify-content-center align-items-center">
     <div class="home-container">
-        <h2 class="font-weight-bold title mb-5">Bienvenue sur notre moteur de recherche</h2>
         <h1 class="font-weight-bold title">Ligue 1 - Saison 2020/2021</h1>
         <h3 class="font-weight-light title">Championnat de France de Football</h3>
     </div>
@@ -42,6 +41,15 @@
                 <input class="form-control mr-sm-2" id="inputClubs" list="clubs" type="search" placeholder="Rechercher" aria-label="Rechercher"/>
                 <datalist id="clubs"></datalist>
                 <button class="btn ligue1-button-outline my-2 my-sm-0" type="submit">Rechercher</button>
+            </form>
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-center specific-search">
+            <h3 class="font-weight-light title mb-4">Comparer deux clubs</h3>
+            <form class="form-inline my-2 my-lg-0 d-flex justify-content-center">
+                <input class="form-control mr-sm-2" id="inputCompareClub1" list="clubs-compare" type="search" placeholder="Club 1" aria-label="Club 1"/>
+                <input class="form-control mr-sm-2" id="inputCompareClub2" list="clubs-compare" type="search" placeholder="Club 2" aria-label="Club 2"/>
+                <datalist id="clubs-compare"></datalist>
+                <button class="btn ligue1-button-outline my-2 my-sm-0" type="submit">Comparer</button>
             </form>
         </div>
         <div class="d-flex flex-column justify-content-center align-items-center specific-search">
