@@ -1,0 +1,48 @@
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+#main {
+    background: #091c3e;
+    height: 100vh;
+}
+
+.title {
+    color: white;
+    text-align: center;
+}
+
+.ligue1-button {
+    background: #CDFB0A;
+    color: #091c3e;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.ligue1-button:hover {
+    background: transparent;
+    border: #CDFB0A solid 1px;
+    color: #CDFB0A;
+}
+
+.ligue1-button-outline {
+    border: #CDFB0A solid 1px;
+    color: #CDFB0A;
+}
+
+.ligue1-button-outline:hover {
+    background: #CDFB0A;
+    color: #091c3e;
+}
+
+datalist {
+    background: red;
+}
+
+.specific-search {
+    margin: auto 10vw;
+}
+
+.home-container {
+    margin: 6vh auto;
+}

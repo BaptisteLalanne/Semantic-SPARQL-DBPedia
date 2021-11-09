@@ -2,13 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Moteur Recherche Ligue 1</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>Ligue 1</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-
+<div id="main" class="d-flex flex-column justify-content-center align-items-center">
+    <div class="home-container">
+        <h2 class="font-weight-bold title mb-5">Bienvenue sur notre moteur de recherche</h2>
+        <h1 class="font-weight-bold title">Ligue 1 - Saison 2020/2021</h1>
+        <h3 class="font-weight-light title">Championnat de France de Football</h3>
+    </div>
+    <div class="d-flex flex-column justify-content-around align-items-center home-container">
+        <button class="btn ligue1-button mb-4">Obtenir les informations générales de la saison</button>
+        <h3 class="font-weight-light title mb-4">Chercher par mot clé</h3>
+        <form class="form-inline my-2 my-lg-0 d-flex justify-content-center">
+            <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Rechercher">
+            <button class="btn ligue1-button-outline my-2 my-sm-0" type="submit">Rechercher</button>
+        </form>
+    </div>
+    <div class="d-flex flex-row justify-content-center align-items-center home-container">
+        <div class="d-flex flex-column justify-content-center align-items-center specific-search">
+            <h3 class="font-weight-light title mb-4">Chercher par club</h3>
+            <form class="form-inline my-2 my-lg-0 d-flex justify-content-center">
+                <input class="form-control mr-sm-2" id="inputClubs" list="clubs" type="search" placeholder="Rechercher" aria-label="Rechercher"/>
+                <datalist id="clubs"></datalist>
+                <button class="btn ligue1-button-outline my-2 my-sm-0" type="submit">Rechercher</button>
+            </form>
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-center specific-search">
+            <h3 class="font-weight-light title mb-4">Chercher par joueur</h3>
+            <form class="form-inline my-2 my-lg-0 d-flex justify-content-center">
+                <input class="form-control mr-sm-2" id="inputJoueurs" list="joueurs" type="search" placeholder="Rechercher" aria-label="Rechercher"/>
+                <datalist id="joueurs"></datalist>
+                <button class="btn ligue1-button-outline my-2 my-sm-0" type="submit">Rechercher</button>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
+<script>
+    let clubSelection = document.getElementById("clubs")
+    let options = ""
+    options += '<option value="Olympique Lyonnais" />'
+    options += '<option value="Olympique de Marseille" />'
+    clubSelection.innerHTML = options
+</script>
 </html>
