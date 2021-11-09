@@ -12,9 +12,13 @@ document.addEventListener("DOMContentLoaded", function() {
     search(req, (data) => {
 
         let tab_objects = data.results.bindings;
-        let tab_clubs = tab_objects.map(x => x["teamName"]["value"])
+        let tab_clubs = {};
 
-        for (let c of tab_clubs) {
+        for (let o of tab_objects) {
+            tab_clubs[o["teamName"]["value"]] = o["team"]["value"]
+        }
+
+        for (let c of Object.keys(tab_clubs)) {
             e("option", c, clubs);
             e("option", c, clubs_compare);
         }
