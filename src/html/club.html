@@ -15,6 +15,7 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     <script src="../js/request.js"></script>
+    <script src="../js/lib.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
@@ -24,8 +25,8 @@
 <button class="btn ligue1-button-outline my-2 my-sm-0 go-home" onclick="window.location.href = 'index.html'">Accueil</button>
 <div>
     <div class="header-page">
-        <div class="header-title">
-            <h1>OLYMPIQUE LYONNAIS</h1>
+        <div id="teamname_result" class="header-title">
+            <h1></h1>
         </div>
         <img src="../../resources/img/logo/Olympique_lyonnais_(logo).svg%20(1).png">
     </div>
@@ -34,24 +35,14 @@
             <div class="element-name">
                 <p>Description</p>
             </div>
-            <p id="description">
-                Ceci est une description à voir comment ca se fait. ozhe f.oiuh zrgpiouh epiuh paioeugh ;Oiuh eriugh
-                piuaoeruhCeci est une description à voir comment ca se fait. ozhe f.oiuh zrgpiouh epiuh paioeugh ;Oiuh
-                eriugh
-                piuaoeruhCeci est une description à voir comment ca se fait. ozhe f.oiuh zrgpiouh epiuh paioeugh ;Oiuh
-                eriugh
-                piuaoeruhCeci est une description à voir comment ca se fait. ozhe f.oiuh zrgpiouh epiuh paioeugh ;Oiuh
-                eriugh
-                piuaoeruh
-            </p>
+            <p id="description"></p>
         </div>
 
         <div class="page-element">
             <div class="element-name">
                 <p>Président</p>
             </div>
-            <div class="element-content">
-                <p>Jean-Michel Aulas</p>
+            <div id="president_result" class="many-content">
             </div>
         </div>
         <div class="page-element">
@@ -60,11 +51,9 @@
             </div>
             <div class="content-with-img">
                 <div class="many-content">
-                    <div class="element-content">
-                        <p>Groupama Stadium</p>
+                    <div id="stadeName_result" class="element-content">
                     </div>
-                    <div class="element-content">
-                        <p>59186 places</p>
+                    <div id="stadeSize_result" class="element-content">
                     </div>
                 </div>
                 <div class="element-content img-content"></div>
@@ -74,76 +63,32 @@
             <div class="element-name">
                 <p>Classement final</p>
             </div>
-            <div class="element-content">
-                <p>4e</p>
+            <div id="classement_result" class="element-content">
             </div>
         </div>
         <div class="page-element">
             <div class="element-name">
                 <p>Meilleur buteur</p>
             </div>
-            <div class="element-content">
-                <p>Memphis Depay</p>
+            <div id="topscorer_result" class="element-content">
             </div>
         </div>
-        <div class="page-element">
+        <div id="largeVictoire_result" class="page-element">
             <div class="element-name">
                 <p>Plus large victoire</p>
             </div>
-            <div class="many-content">
-                <div class="element-content team-score">
-                    <p>Saint-Etienne</p>
-                </div>
-                <div class="element-content score">
-                    <p>0-5</p>
-                </div>
-                <div class="element-content team-score">
-                    <p>Olympique Lyonnais</p>
-                </div>
-            </div>
         </div>
-        <div class="page-element">
+        <div id="largeDefaite_result" class="page-element">
             <div class="element-name">
                 <p>Plus large défaite</p>
-            </div>
-            <div class="many-content">
-                <div class="element-content team-score">
-                    <p>Saint-Etienne</p>
-                </div>
-                <div class="element-content score">
-                    <p>0-5</p>
-                </div>
-                <div class="element-content team-score">
-                    <p>Olympique Lyonnais</p>
-                </div>
             </div>
         </div>
         <div class="page-element">
             <div class="element-name">
                 <p>Entraineur(s)</p>
             </div>
-            <div class="many-content">
-                <div class="element-content">
-                    <p>Rudi Garcia éclaté que tu es</p>
-                </div>
-                <div class="element-content">
-                    <p>Rudi Garcia éclaté que tu es</p>
-                </div>
-                <div class="element-content">
-                    <p>Rudi Garcia éclaté que tu es</p>
-                </div>
-                <div class="element-content">
-                    <p>Rudi Garcia éclaté que tu es</p>
-                </div>
-                <div class="element-content">
-                    <p>Rudi Garcia éclaté que tu es</p>
-                </div>
-                <div class="element-content">
-                    <p>Rudi Garcia éclaté que tu es</p>
-                </div>
-                <div class="element-content">
-                    <p>Rudi Garcia éclaté que tu es</p>
-                </div>
+            <div id="entraineurs_result" class="many-content">
+
             </div>
         </div>
         <div class="page-element" id="players-element">
@@ -151,65 +96,10 @@
                 <p>Joueurs</p>
             </div>
             <div id="players-grid">
-                <div class="player">
-                    <div class="player-name">
-                        <p>Memphis Depay</p>
-                    </div>
-                    <div class="player-link">
-                        <button class="btn ligue1-button-outline">Fiche joueur</button>
-                    </div>
-                </div>
-                <div class="player">
-                    <div class="player-name">
-                        <p>Anthony Lopes</p>
-                    </div>
-                    <div class="player-link">
-                        <button class="btn ligue1-button-outline">Fiche joueur</button>
-                    </div>
-                </div>
-                <div class="player">
-                    <div class="player-name">
-                        <p>Karl Toko Ekambi</p>
-                    </div>
-                    <div class="player-link">
-                        <button class="btn ligue1-button-outline">Fiche joueur</button>
-                    </div>
-                </div>
-                <div class="player">
-                    <div class="player-name">
-                        <p>Rayan Cherki</p>
-                    </div>
-                    <div class="player-link">
-                        <button class="btn ligue1-button-outline">Fiche joueur</button>
-                    </div>
-                </div>
-                <div class="player">
-                    <div class="player-name">
-                        <p>Bruno Guimaraes</p>
-                    </div>
-                    <div class="player-link">
-                        <button class="btn ligue1-button-outline">Fiche joueur</button>
-                    </div>
-                </div>
-                <div class="player">
-                    <div class="player-name">
-                        <p>Maxence Caqueret</p>
-                    </div>
-                    <div class="player-link">
-                        <button class="btn ligue1-button-outline">Fiche joueur</button>
-                    </div>
-                </div>
-                <div class="player">
-                    <div class="player-name">
-                        <p>Joueur avec un nom très long pour tester mon CSS</p>
-                    </div>
-                    <div class="player-link">
-                        <button class="btn ligue1-button-outline">Fiche joueur</button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
+<script type="module" src="../js/club_global_research.js"></script>
 </body>
 </html>

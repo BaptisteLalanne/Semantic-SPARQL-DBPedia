@@ -1,18 +1,21 @@
 export class listeRequest{
-    static pageClub = (nomClub) => {
+    static pageClub = (param) => {
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbr: <http://dbpedia.org/resource/>
         PREFIX dbp: <http://dbpedia.org/property/>
-        select ?nom, STR(?descriptionNoString) as ?description,?resultat as ?classement, ?stade, ?meilleurButeur, ?nombreDePlacesDansLeStade, STR(?nameCoach) as ?nomEntraineur,STR(?nomsJoueurs) as ?joueurs, STR(?plusLargeVictoire_noString) as ?plusLargeVictoire, STR(?plusLargeDefaite_noString) as ?plusLargeDefaite
+        select STR(?nomPresident) as ?nomPresident, STR(?nom) as ?nom, STR(?descriptionNoString) as ?description,?resultat as ?classement, STR(?stadeName) as ?nomStade, ?meilleurButeurLink, STR(?meilleurButeur) as ?meilleurButeur, ?nombreDePlacesDansLeStade, STR(?nameCoach) as ?nomEntraineur,STR(?nomsJoueurs) as ?joueursNoms, ?joueurs as ?joueursLink, STR(?plusLargeVictoire_noString) as ?plusLargeVictoire, STR(?plusLargeDefaite_noString) as ?plusLargeDefaite
         where {
-        dbr:2020–21_${nomClub}_season dbp:leagueResult ?resultat;
-        dbo:team ?nom;
+        dbr:${param} dbp:leagueResult ?resultat;
+        dbo:team ?nomLink;
+        dbp:chairman ?nomPresident;
         dbo:abstract ?descriptionNoString;
-        dbp:leagueTopscorer ?meilleurButeur;
+        dbp:leagueTopscorer ?meilleurButeurLink;
         dbo:manager ?coach;
         dbp:name ?joueurs;
         dbo:ground ?stade.
+        ?nomLink dbp:fullname ?nom.
+        ?meilleurButeurLink dbp:fullname ?meilleurButeur.
         ?joueurs dbp:name ?nomsJoueurs.
         ?coach dbp:name ?nameCoach.
         ?stade dbo:seatingCapacity ?nombreDePlaces.
@@ -21,13 +24,22 @@ export class listeRequest{
         
         bind( "pas de données"  as ?default_win).
         optional {
-        dbr:2020–21_${nomClub}_season dbp:largestWin ?bigWin.
+        dbr:${param} dbp:largestWin ?bigWin.
         }
         bind(coalesce(?bigWin, ?default_win) as ?plusLargeVictoire_noString)
         
+        bind( "pas de données"  as ?default_stadeName).
+        optional {
+        ?stade dbp:fullname ?stadeNameFound.
+        }
+        optional {
+        ?stade dbp:name ?stadeNameFound.
+        }
+        bind(coalesce(?stadeNameFound, ?default_stadeName) as ?stadeName)
+        
         bind( "pas de données"  as ?default_loss).
         optional {
-        dbr:2020–21_${nomClub}_season dbp:largestLoss ?bigLoss.
+        dbr:${param} dbp:largestLoss ?bigLoss.
         }
         bind(coalesce(?bigLoss, ?default_loss) as ?plusLargeDefaite_noString)
         }`;

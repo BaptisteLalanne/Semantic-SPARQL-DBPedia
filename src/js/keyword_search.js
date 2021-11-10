@@ -2,7 +2,7 @@ import { listeRequest } from "./liste_request.js";
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    console.log("do_search.js");
+    console.log("keyword_search.js");
 
     // get dom elements
     let results_container = document.querySelector("#results_container");
@@ -49,7 +49,6 @@ document.addEventListener("DOMContentLoaded", function() {
         // format results in dictionnary
         let objects_found = data.results.bindings;
         let players_found = {};
-        //console.log(objects_found);
 
         for (let o of objects_found) {
             let tmp_resource = o["lienDuJoueur"]["value"].split("/");

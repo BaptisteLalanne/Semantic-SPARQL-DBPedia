@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         let user_input = inputClubs.value;
         if (user_input in tab_clubs) {
-            console.log("yes")
             let tmp_resource = tab_clubs[user_input].split("/");
             window.location.href = "./club.html?resource=" + encodeURI(tmp_resource[tmp_resource.length-1]);
         } else {

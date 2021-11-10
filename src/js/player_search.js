@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function() {
         let user_input = inputJoueurs.value;
         console.log(tab_players)
         if (user_input in tab_players) {
-            console.log("yes")
             let tmp_resource = tab_players[user_input].split("/");
             window.location.href = "./player.html?resource=" + encodeURI(tmp_resource[tmp_resource.length-1]);
         } else {
