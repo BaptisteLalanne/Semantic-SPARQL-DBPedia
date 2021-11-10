@@ -1,8 +1,9 @@
 * {
     font-family: 'Lato', sans-serif;
+    color: white;
 }
 
-#main {
+.main {
     background: #091c3e;
     height: 100vh;
 }
@@ -45,6 +46,247 @@ datalist {
 
 .home-container {
     margin: 6vh auto;
+}
+
+
+/* CSS page club*/
+
+#page-club {
+    background: #091c3e;
+}
+
+.header-club {
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-club .club-name {
+    padding: 10px 50px;
+    background: white;
+    transform: skew(-30deg,0deg);
+    height: 100px;
+    text-align: center;
+    min-width: 360px;
+    position: relative;
+    left: 15px;
+    display: flex;
+    align-items: center;
+    margin-right: 100px;
+}
+
+.header-club .club-name h1 {
+    transform: skew(30deg,0deg);
+    font-size: 40px;
+    font-weight: 900;
+    color: #091c3e;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.header-club img {
+    height: 100px;
+}
+
+#club-elements {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.club-element {
+    width: 80vw;
+    margin: 60px auto;
+    display: flex;
+}
+
+.club-element .element-name {
+    display: inline-block;
+    padding: 10px 50px;
+    background: #CDFB0A;
+    transform: skew(-30deg,0deg);
+    height: 50px;
+    text-align: center;
+    min-width: 360px;
+    position: relative;
+    left: 15px;
+}
+
+.club-element .element-name p {
+    transform: skew(30deg,0deg);
+    font-size: 18px;
+    font-weight: 900;
+    color: #091c3e;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+
+.club-element .element-content {
+    display: inline-block;
+    position: relative;
+    top: 30px;
+    left: 25px;
+    padding: 10px 50px;
+    background: #091c3e;
+    transform: skew(-30deg,0deg);
+    border: white solid 1px;
+    height: 50px;
+}
+
+.club-element .element-content p {
+    transform: skew(30deg,0deg);
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    margin: 0;
+}
+
+#description-element {
+    display: block;
+    margin-bottom: 0;
+}
+
+#description {
+    font-size: 18px;
+    font-weight: 300;
+    margin-top: 30px;
+    text-align: justify;
+}
+
+.club-element .img-content {
+    background-image: url("../../resources/img/stade/Intérieur_POL.jpg");
+    background-size: cover;
+    width: 500px;
+    height: 300px;
+    position: relative;
+    left: -80px;
+    margin-top: 10px;
+    border: none;
+}
+
+.club-element .content-with-img {
+    display: inline-block;
+}
+
+#coaches {
+    display: flex;
+    flex-direction: column;
+}
+
+#coaches :nth-child(2) {
+    margin-top: 10px;
+    position: relative;
+    left: -10px;
+}
+
+#coaches :nth-child(3) {
+    margin-top: 10px;
+    position: relative;
+    left: -43px;
+}
+
+#coaches :nth-child(4) {
+    margin-top: 10px;
+    position: relative;
+    left: -76px;
+}
+
+#coaches :nth-child(5) {
+    margin-top: 10px;
+    position: relative;
+    left: -109px;
+}
+
+#coaches :nth-child(6) {
+    margin-top: 10px;
+    position: relative;
+    left: -143px;
+}
+
+#coaches :nth-child(7) {
+    margin-top: 10px;
+    position: relative;
+    left: -176px;
+}
+
+.club-element .many-content {
+    display: flex;
+}
+
+.club-element .many-content .element-content {
+    margin-right: 10px;
+}
+
+.club-element .team-score {
+    border: none;
+    background: white;
+}
+
+.club-element .team-score p, .club-element .score p {
+    color: #091c3e;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.club-element .score {
+    border: none;
+    background: #CDFB0A;
+    padding: 10px 20px;
+}
+
+#players-element {
+    display: block;
+}
+
+#players-element {
+    display: block;
+}
+
+#players-grid {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+
+.club-element .player {
+    height: 200px;
+    border-radius: 2px;
+}
+
+.club-element .player-name {
+    height: 135px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.club-element .player-name p {
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 5px;
+}
+
+.club-element .player-link {
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.club-element .player-link button {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.club-element .player:hover {
+    background: #0f2752;
 }
 
 /* ---------------------------- */
