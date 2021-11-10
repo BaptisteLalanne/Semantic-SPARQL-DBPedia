@@ -14,15 +14,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // get query parameters (GET)
     let params = get_query();
-    let search_query = params["search"];
+    let search_query = params["search"].replace("+", " ");
 
     // display query
-    span_searched.innerHTML = params["search"]
+    span_searched.innerHTML = search_query
 
     let request = "";
 
     // do team search
-    request = listeRequest.searchTeam(params["search"])
+    request = listeRequest.searchTeam(search_query)
     search(request, (data) => {
 
         // format results in dictionnary
