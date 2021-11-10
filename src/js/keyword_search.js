@@ -88,7 +88,7 @@ function display_team(parent, team_name, resource) {
     } else {
         link = e("a", team_name, ticket, "w-100 h-100 p-3");
     }
-    link.href = "./club.html?" + encodeURIComponent(resource);
+    link.href = "./club.html?resource=" + encodeURIComponent(resource);
 }
 
 function display_player(parent, player_name, resource) {
@@ -111,7 +111,7 @@ function display_player(parent, player_name, resource) {
     } else {
         link = e("a", player_name, ticket, "w-100 h-100 p-3");
     }
-    link.href = "./player.html?" + encodeURIComponent(resource);
+    link.href = "./player.html?resource=" + encodeURIComponent(resource);
 }
 
 function hideSpinner() {
