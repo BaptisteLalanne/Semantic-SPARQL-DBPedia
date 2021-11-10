@@ -48,6 +48,11 @@ datalist {
     margin: 6vh auto;
 }
 
+.go-home {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
 
 /* ---------------------------- */
 /*      CLUB AND PLAYER PAGE    */
