@@ -70,17 +70,16 @@ datalist {
     background: white;
     transform: skew(-30deg,0deg);
     height: 100px;
+    width: max-content;
     text-align: center;
-    min-width: 360px;
-    position: relative;
-    left: 15px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .header-page .header-title h1 {
     transform: skew(30deg,0deg);
-    font-size: 40px;
+    font-size: 35px;
     font-weight: 900;
     color: #091c3e;
     margin: 0;
@@ -112,7 +111,7 @@ datalist {
     transform: skew(-30deg,0deg);
     height: 50px;
     text-align: center;
-    min-width: 360px;
+    width: 360px;
     position: relative;
     left: 15px;
 }
@@ -257,6 +256,73 @@ datalist {
 
 .page-element .player:hover {
     background: #0f2752;
+}
+
+/* ---------------------------- */
+/*        COMPARISON PAGE      */
+/* ---------------------------- */
+
+.header-comparaison {
+    width: calc(50% - (360px/2));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-comparaison .header-title {
+    height: auto;
+    min-height: 70px;
+    text-align: center;
+    background: #CDFB0A;
+    border-bottom: solid 8px white;
+}
+
+.header-comparaison .header-title h1 {
+    font-size: 30px;
+}
+
+.comparaison-element {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.comparaison-element .compare-element-container {
+    width: 360px;
+}
+
+.comparaison-element .value-container {
+    width: calc(50% - (360px/2));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.comparaison-element .element-content, .comparaison-element .element-name, .comparaison-element .many-content {
+    top: 0;
+    left: 0;
+}
+
+.comparaison-element .score-value-container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.comparaison-element .score-value-container .many-content {
+    transform: skew(0deg,0deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.comparaison-element .score-value-container .many-content .element-content {
+    transform: skew(-30deg,0deg);
+    height: auto;
+    min-height: 50px;
+    text-align: center;
 }
 
 /* ---------------------------- */
