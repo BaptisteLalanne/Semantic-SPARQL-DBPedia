@@ -5,7 +5,7 @@
 
 .main {
     background: #091c3e;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .title {
@@ -272,8 +272,13 @@ datalist {
     font-weight: bold;
 }
 
-div.team_container {
-    background-color: #CDFB0A;
+div.ticket {
+    border: 4px solid #CDFB0A;
     color: black;
-    border-radius: 5px;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+}
+
+div.ticket:hover {
+    background-color: #CDFB0A;
 }

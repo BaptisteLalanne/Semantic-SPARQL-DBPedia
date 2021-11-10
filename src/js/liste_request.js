@@ -101,4 +101,26 @@ export class listeRequest{
         }
         `
     }
+
+    static searchPlayer = (param) => {
+        return `
+        PREFIX dbo: <http://dbpedia.org/ontology/>
+        PREFIX dbr: <http://dbpedia.org/resource/>
+        PREFIX dbp: <http://dbpedia.org/property/>
+        select ?lienDuJoueur, STR(?nomDuJoueur) as ?nomDuJoueur
+        where {
+            ?team dbo:position dbr:2020–21_Ligue_1.
+            bind( "pas de données"  as ?default_name).
+            ?team dbp:name ?joueurs.
+            optional {
+                ?joueurs rdfs:label ?nomsJoueurs.
+                FILTER(langMatches(lang(?nomsJoueurs),"en"))
+            }
+            bind(coalesce(?nomsJoueurs, ?default_name) as ?nomsJoueursNoString)
+            bind(IF(?nomsJoueursNoString = ?default_name,?joueurs,?nomsJoueurs) AS ?nomDuJoueur)
+            bind(IF(?nomsJoueursNoString = ?default_name,?default_name,?joueurs) AS ?lienDuJoueur)
+            FILTER(contains(lcase(STR(?nomDuJoueur)),lcase("${param}")))
+        } 
+        `;
+    }
 }

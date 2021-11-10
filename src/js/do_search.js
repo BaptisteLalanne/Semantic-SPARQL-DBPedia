@@ -41,14 +41,43 @@ document.addEventListener("DOMContentLoaded", function() {
 
     });
 
-    // do player search
-
-});
-
+        // do player search
+        request = listeRequest.searchPlayer(search_query)
+        search(request, (data) => {
+    
+            // format results in dictionnary
+            let objects_found = data.results.bindings;
+            let players_found = {};
+            console.log(objects_found);
+    
+            for (let o of objects_found) {
+                players_found[o["nomDuJoueur"]["value"]] = o["lienDuJoueur"]["value"]
+            }
+    
+            // display players
+            for (let p of Object.keys(players_found)) {
+                display_player(players_results, p);
+            }
+            hideSpinner();
+            showContent();
+            
+    
+        });
+    
+    });
+    
 function display_team(parent, team_name) {
     // TODO: set link to specific team page
-    let container = e("div", "", parent, "col-lg-4 col-md-6 m-3 team_container");
-    let title = e("h3", team_name, container);
+    let container = e("div", "", parent, "col-lg-4 col-md-6 p-2");
+    let ticket = e("div", "", container, "ticket p-3 h-100");
+    let title = e("h3", team_name, ticket);
+}
+
+function display_player(parent, player_name) {
+    // TODO: set link to specific player page
+    let container = e("div", "", parent, "col-lg-4 col-md-6 p-2");
+    let ticket = e("div", "", container, "ticket p-3 h-100");
+    let title = e("h3", player_name, ticket);
 }
 
 function hideSpinner() {
