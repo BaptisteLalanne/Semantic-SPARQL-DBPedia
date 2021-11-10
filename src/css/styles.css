@@ -46,3 +46,21 @@ datalist {
 .home-container {
     margin: 6vh auto;
 }
+
+/* ---------------------------- */
+/*          SEARCH PAGE         */
+/* ---------------------------- */
+
+#search_page_container {
+    color: white;
+}
+
+#results_container h2 {
+    font-weight: bold;
+}
+
+div.team_container {
+    background-color: #CDFB0A;
+    color: black;
+    border-radius: 5px;
+}

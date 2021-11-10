@@ -84,4 +84,21 @@ export class listeRequest{
             GROUP BY ?currentSeason 
         `
     }
+
+    static searchTeam = (param) => {
+        return `
+        PREFIX dbo: <http://dbpedia.org/ontology/>
+        PREFIX dbr: <http://dbpedia.org/resource/>
+        PREFIX dbp: <http://dbpedia.org/property/>
+        PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+        PREFIX rdfs: <https://www.w3.org/2000/01/rdf-schema#/>        
+        select  ?team ?teamName where {
+                    ?team dbo:position dbr:2020–21_Ligue_1.
+                    ?team dbo:team ?club.
+                    ?club dbp:fullname ?teamName.
+                    FILTER(strlen(?teamName) != 0).
+                    FILTER(contains(lcase(?teamName),"${param}")).
+        }
+        `
+    }
 }
