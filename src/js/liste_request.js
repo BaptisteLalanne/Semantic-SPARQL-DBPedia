@@ -156,4 +156,29 @@ export class listeRequest{
         } 
         `;
     }
+
+    static pagePlayer = (param) => {
+        return `
+            PREFIX dbo: <http://dbpedia.org/ontology/>
+            PREFIX dbr: <http://dbpedia.org/resource/>
+            PREFIX dbp: <http://dbpedia.org/property/>
+            PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+            select STR(?nom) as ?nomJoueur, STR(?date) as ?dateDeNaissance, STR(?description) as ?descriptionJoueur, STR(?taille) as ?tailleJoueur, STR(?nomClub) as ?historiqueClubJoueur, STR(?poste) as ?posteJoueur, STR(?nomEquipeNationaleNoString) as ?nomEquipeNationale
+            where {
+                dbr:${param} dbp:name ?nom;
+                dbo:birthDate ?date;
+                dbo:abstract ?description;
+                dbo:position ?position;
+                dbp:nationalteam ?equipeNationale;
+                dbp:height ?taille;
+                dbo:team ?listeEquipe.
+                ?equipeNationale rdfs:label ?nomEquipeNationaleNoString.
+                ?listeEquipe dbp:fullname ?nomClub.
+                ?position rdfs:label ?poste.
+                FILTER(langMatches(lang(?poste),"fr"))
+                FILTER(langMatches(lang(?description),"fr"))
+                FILTER(langMatches(lang(?nomEquipeNationaleNoString),"fr"))
+            } 
+        `;
+    }
 }
