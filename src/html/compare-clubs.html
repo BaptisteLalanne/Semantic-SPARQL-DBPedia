@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ligue 1 - Comparaison clubs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="../js/request.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" href="../../resources/ligue1logo carre.png">
+</head>
+<body class="page-infos">
+<button class="btn ligue1-button-outline my-2 my-sm-0 go-home" onclick="window.location.href = 'index.html'">Accueil</button>
+<div>
+    <div class="header-page comparaison-element page-element">
+        <div class="header-comparaison">
+            <div class="header-title">
+                <h1>Olympique Lyonnais</h1>
+            </div>
+        </div>
+        <div class="compare-element-container"></div>
+        <div class="header-comparaison">
+            <div class="header-title">
+                <h1>Olympique de marseille</h1>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="comparaison-element page-element">
+            <div class="value-container">
+                <div class="element-content team-score">
+                    <p>4</p>
+                </div>
+            </div>
+            <div class="compare-element-container">
+                <div class="element-name">
+                    <p>Classement final</p>
+                </div>
+            </div>
+            <div class="value-container">
+                <div class="element-content">
+                    <p>15</p>
+                </div>
+            </div>
+        </div>
+        <div class="comparaison-element page-element">
+            <div class="value-container">
+                <div class="element-content team-score">
+                    <p>30</p>
+                </div>
+            </div>
+            <div class="compare-element-container">
+                <div class="element-name">
+                    <p>Nombre de victoires</p>
+                </div>
+            </div>
+            <div class="value-container">
+                <div class="element-content">
+                    <p>0</p>
+                </div>
+            </div>
+        </div>
+        <div class="comparaison-element page-element">
+            <div class="value-container">
+                <div class="element-content">
+                    <p>6</p>
+                </div>
+            </div>
+            <div class="compare-element-container">
+                <div class="element-name">
+                    <p>Nombre de défaites</p>
+                </div>
+            </div>
+            <div class="value-container">
+                <div class="element-content team-score">
+                    <p>5</p>
+                </div>
+            </div>
+        </div>
+        <div class="comparaison-element page-element">
+            <div class="value-container">
+                <div class="element-content">
+                    <p>2</p>
+                </div>
+            </div>
+            <div class="compare-element-container">
+                <div class="element-name">
+                    <p>Nombre de matchs nuls</p>
+                </div>
+            </div>
+            <div class="value-container">
+                <div class="element-content">
+                    <p>33</p>
+                </div>
+            </div>
+        </div>
+        <div class="comparaison-element page-element">
+            <div class="value-container">
+                <div class="element-content team-score">
+                    <p>134585</p>
+                </div>
+            </div>
+            <div class="compare-element-container">
+                <div class="element-name">
+                    <p>Nombre de buts marqués</p>
+                </div>
+            </div>
+            <div class="value-container">
+                <div class="element-content">
+                    <p>1</p>
+                </div>
+            </div>
+        </div>
+        <div class="comparaison-element page-element">
+            <div class="value-container">
+                <div class="element-content team-score">
+                    <p>3</p>
+                </div>
+            </div>
+            <div class="compare-element-container">
+                <div class="element-name">
+                    <p>Nombre de buts encaissés</p>
+                </div>
+            </div>
+            <div class="value-container">
+                <div class="element-content">
+                    <p>457</p>
+                </div>
+            </div>
+        </div>
+        <div class="comparaison-element page-element">
+            <div class="value-container">
+                <div class="element-content">
+                    <p>59187</p>
+                </div>
+            </div>
+            <div class="compare-element-container">
+                <div class="element-name">
+                    <p>Capacité stade</p>
+                </div>
+            </div>
+            <div class="value-container">
+                <div class="element-content team-score">
+                    <p>65712</p>
+                </div>
+            </div>
+        </div>
+        <div class="two-lines-comparaison-element">
+            <div class="comparaison-element page-element">
+                <div class="compare-element-container">
+                    <div class="element-name">
+                        <p>Plus large victoire</p>
+                    </div>
+                </div>
+            </div>
+            <div class="comparaison-element page-element">
+                <div class="score-value-container">
+                    <div class="many-content">
+                        <div class="element-content team-score">
+                            <p>Saint-Etienne</p>
+                        </div>
+                        <div class="element-content score">
+                            <p>0 - 5</p>
+                        </div>
+                        <div class="element-content team-score">
+                            <p>Olympique Lyonnais</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="compare-element-container"></div>
+                <div class="score-value-container">
+                    <div class="many-content">
+                        <div class="element-content team-score">
+                            <p>Olympique de marseille</p>
+                        </div>
+                        <div class="element-content score">
+                            <p>1 - 0</p>
+                        </div>
+                        <div class="element-content team-score">
+                            <p>Association Sportive de Monaco Football Club SA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="two-lines-comparaison-element">
+            <div class="comparaison-element page-element">
+                <div class="compare-element-container">
+                    <div class="element-name">
+                        <p>Plus large défaite</p>
+                    </div>
+                </div>
+            </div>
+            <div class="comparaison-element page-element">
+                <div class="score-value-container">
+                    <div class="many-content">
+                        <div class="element-content team-score">
+                            <p>Saint-Etienne</p>
+                        </div>
+                        <div class="element-content score">
+                            <p>0 - 5</p>
+                        </div>
+                        <div class="element-content team-score">
+                            <p>Olympique Lyonnais</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="compare-element-container"></div>
+                <div class="score-value-container">
+                    <div class="many-content">
+                        <div class="element-content team-score">
+                            <p>Olympique de marseille</p>
+                        </div>
+                        <div class="element-content score">
+                            <p>1 - 4</p>
+                        </div>
+                        <div class="element-content team-score">
+                            <p>Olympique Lyonnais</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
