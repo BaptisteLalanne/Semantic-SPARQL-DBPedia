@@ -15,6 +15,7 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     <script src="../js/request.js"></script>
+    <script src="../js/lib.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
@@ -24,7 +25,7 @@
 <div>
     <div class="header-page">
         <div class="header-title">
-            <h1>MEMPHIS DEPAY</h1>
+            <h1 id="player_name">MEMPHIS DEPAY</h1>
         </div>
     </div>
     <div id="page-elements">
@@ -33,14 +34,6 @@
                 <p>Description</p>
             </div>
             <p id="description">
-                Ceci est une description à voir comment ca se fait. ozhe f.oiuh zrgpiouh epiuh paioeugh ;Oiuh eriugh
-                piuaoeruhCeci est une description à voir comment ca se fait. ozhe f.oiuh zrgpiouh epiuh paioeugh ;Oiuh
-                eriugh
-                piuaoeruhCeci est une description à voir comment ca se fait. ozhe f.oiuh zrgpiouh epiuh paioeugh ;Oiuh
-                eriugh
-                piuaoeruhCeci est une description à voir comment ca se fait. ozhe f.oiuh zrgpiouh epiuh paioeugh ;Oiuh
-                eriugh
-                piuaoeruh
             </p>
         </div>
 
@@ -49,7 +42,7 @@
                 <p>Date de naissance</p>
             </div>
             <div class="element-content">
-                <p>25/05/1983</p>
+                <p id="birth_date"></p>
             </div>
         </div>
         <div class="page-element">
@@ -57,7 +50,7 @@
                 <p>Taille</p>
             </div>
             <div class="element-content">
-                <p>1,75 m</p>
+                <p id="height"></p>
             </div>
         </div>
         <div class="page-element">
@@ -65,25 +58,16 @@
                 <p>Poste</p>
             </div>
             <div class="element-content">
-                <p>Attaquant</p>
+                <p id="position"></p>
             </div>
         </div>
         <div class="page-element">
             <div class="element-name">
                 <p>Clubs fréqentés</p>
             </div>
-            <div class="many-content">
+            <div class="many-content" id="clubs">
                 <div class="element-content">
-                    <p>PSV Eindhoven</p>
-                </div>
-                <div class="element-content">
-                    <p>Manchester United</p>
-                </div>
-                <div class="element-content">
-                    <p>Olympique Lyonnais</p>
-                </div>
-                <div class="element-content">
-                    <p>FC Barcelone</p>
+                    <p></p>
                 </div>
             </div>
         </div>
@@ -91,11 +75,14 @@
             <div class="element-name">
                 <p>Equipe nationale</p>
             </div>
-            <div class="element-content">
-                <p>Pays-Bas</p>
+            <div class="many-content" id="national_teams">
+                <div class="element-content">
+                    <p></p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<script type="module" src="../js/player.js"></script>
 </body>
 </html>
