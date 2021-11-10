@@ -53,8 +53,9 @@ datalist {
 /*      CLUB AND PLAYER PAGE    */
 /* ---------------------------- */
 
-#page-club, #page-player {
+.page-infos {
     background: #091c3e;
+    padding-bottom: 50px;
 }
 
 .header-page {
