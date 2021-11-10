@@ -88,7 +88,7 @@ function display_team(parent, team_name, resource) {
     } else {
         link = e("a", team_name, ticket, "w-100 h-100 p-3");
     }
-    link.href = "./club.html?" + encodeURIComponent(resource);
+    link.href = "./club.html?resource=" + encodeURIComponent(resource);
 }
 
 function display_player(parent, player_name, resource) {
@@ -96,6 +96,10 @@ function display_player(parent, player_name, resource) {
     let disabled = false;
     if (resource == "null") 
         disabled = true;
+
+    let displayed_name = player_name.split("/");
+    displayed_name = displayed_name[displayed_name.length-1]
+    displayed_name = displayed_name.replace("_", " ");
 
     let container = e("div", "", parent, "col-lg-4 col-md-6 p-2");
     
@@ -107,11 +111,11 @@ function display_player(parent, player_name, resource) {
     
     let link;
     if (disabled) {
-        link = e("p", player_name, ticket, "w-100 h-100 p-3");
+        link = e("p", displayed_name, ticket, "w-100 h-100 p-3");
     } else {
-        link = e("a", player_name, ticket, "w-100 h-100 p-3");
+        link = e("a", displayed_name, ticket, "w-100 h-100 p-3");
     }
-    link.href = "./player.html?" + encodeURIComponent(resource);
+    link.href = "./player.html?resource=" + encodeURIComponent(resource);
 }
 
 function hideSpinner() {
