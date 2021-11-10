@@ -110,7 +110,7 @@ export class listeRequest{
         select ?lienDuJoueur, STR(?nomDuJoueur) as ?nomDuJoueur
         where {
             ?team dbo:position dbr:2020–21_Ligue_1.
-            bind( "pas de données"  as ?default_name).
+            bind( "null"  as ?default_name).
             ?team dbp:name ?joueurs.
             optional {
                 ?joueurs rdfs:label ?nomsJoueurs.
