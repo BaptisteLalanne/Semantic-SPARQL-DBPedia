@@ -5,7 +5,7 @@
 
 .main {
     background: #091c3e;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .title {
@@ -338,8 +338,35 @@ datalist {
     font-weight: bold;
 }
 
-div.team_container {
+div.ticket {
+    border: 4px solid #CDFB0A;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+div.ticket.disabled {
+    border-color: grey;
+}
+
+div.ticket:hover {
     background-color: #CDFB0A;
+}
+
+div.ticket.disabled:hover {
+    background-color: grey;
+}
+
+div.ticket > a, div.ticket > p {
+    font-size: 1.4em;
+    margin: 0;
+}
+
+div.ticket > a {
+    color: #CDFB0A;
+    display: inline-block;
+    text-decoration: none;
+}
+
+div.ticket:hover > a {
     color: black;
-    border-radius: 5px;
 }
