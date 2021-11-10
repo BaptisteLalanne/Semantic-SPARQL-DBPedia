@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ligue 1 - Informations saison</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="../js/request.js"></script>
+    <script src="../js/lib.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" href="../../resources/Logo Ligue 1 Carre.png">
+</head>
+<body class="page-infos">
+<button class="btn ligue1-button-outline my-2 my-sm-0 go-home" onclick="window.location.href = 'index.html'">Accueil
+</button>
+<div>
+    <div class="header-page">
+        <div class="header-title" id="information-page-title">
+            <h1>Informations saison 2020/2021</h1>
+        </div>
+    </div>
+
+    <nav class="page-element" id="navbar-information">
+        <button id="table-rank-button" class="btn ligue1-button my-2 my-sm-0">Classement final</button>
+        <button id="qualified-europe-button" class="btn ligue1-button-outline my-2 my-sm-0">Qualifiés Europe</button>
+        <button id="statistics-button" class="btn ligue1-button-outline my-2 my-sm-0">Statistiques</button>
+        <button id="nationalities-button" class="btn ligue1-button-outline my-2 my-sm-0">Nationalités</button>
+    </nav>
+
+    <div id="table-rank">
+        <div class="club-rank">
+            <p class="number-rank">1</p>
+            <p class="club-name-rank">Olympique Lyonnais</p>
+        </div>
+        <div class="club-rank">
+            <p class="number-rank">2</p>
+            <p class="club-name-rank">Olympique de Marseille</p>
+        </div>
+        <div class="club-rank">
+            <p class="number-rank">3</p>
+            <p class="club-name-rank">Association Sportive de Monaco Football Club SA</p>
+        </div>
+        <div class="club-rank">
+            <p class="number-rank">20</p>
+            <p class="club-name-rank">Association Sportive de Saint-Étienne Loire</p>
+        </div>
+        <div class="club-rank">
+            <p class="number-rank">20</p>
+            <p class="club-name-rank">Association Sportive de Saint-Étienne Loire</p>
+        </div>
+        <div class="club-rank">
+            <p class="number-rank">20</p>
+            <p class="club-name-rank">Association Sportive de Saint-Étienne Loire</p>
+        </div>
+        <div class="club-rank">
+            <p class="number-rank">20</p>
+            <p class="club-name-rank">Association Sportive de Saint-Étienne Loire</p>
+        </div>
+    </div>
+
+    <div class="page-element" id="qualified-europe">
+        <div class="element-name">
+            <p>Champions League</p>
+        </div>
+        <div class="qualified-clubs">
+            <div class="element-content">
+                <p>Olympique Lyonnais</p>
+            </div>
+            <div class="element-content">
+                <p>Olympique Lyonnais</p>
+            </div>
+            <div class="element-content">
+                <p>Association Sportive de Monaco Football Club SA</p>
+            </div>
+        </div>
+        <div class="element-name">
+            <p>Europa League</p>
+        </div>
+        <div class="qualified-clubs">
+            <div class="element-content">
+                <p>Olympique Lyonnais</p>
+            </div>
+            <div class="element-content">
+                <p>Olympique Lyonnais</p>
+            </div>
+        </div>
+        <div class="element-name">
+            <p>Europa Conference League</p>
+        </div>
+        <div class="qualified-clubs">
+            <div class="element-content">
+                <p>Association Sportive de Monaco Football Club SA</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="statistics">
+        <div class="page-element">
+            <div class="element-name">
+                <p>Meilleur buteur</p>
+            </div>
+            <div class="element-content">
+                <p>Tête de noisette</p>
+            </div>
+        </div>
+        <div class="page-element">
+            <div class="element-name">
+                <p>Plus large victoire à domicile</p>
+            </div>
+            <div class="many-content">
+                <div class="element-content team-score">
+                    <p>Saint-Etienne</p>
+                </div>
+                <div class="element-content score">
+                    <p>0-5</p>
+                </div>
+                <div class="element-content team-score">
+                    <p>Olympique Lyonnais</p>
+                </div>
+            </div>
+        </div>
+        <div class="page-element">
+            <div class="element-name">
+                <p>Plus large victoire à l'extérieur</p>
+            </div>
+            <div class="many-content">
+                <div class="element-content team-score">
+                    <p>Saint-Etienne</p>
+                </div>
+                <div class="element-content score">
+                    <p>0-5</p>
+                </div>
+                <div class="element-content team-score">
+                    <p>Association Sportive de Monaco Football Club SA</p>
+                </div>
+            </div>
+        </div>
+        <div class="page-element">
+            <div class="element-name">
+                <p>Match avec le plus de buts</p>
+            </div>
+            <div class="many-content">
+                <div class="element-content team-score">
+                    <p>Saint-Etienne</p>
+                </div>
+                <div class="element-content score">
+                    <p>0-5</p>
+                </div>
+                <div class="element-content team-score">
+                    <p>Olympique de Marseille</p>
+                </div>
+            </div>
+        </div>
+        <div class="page-element">
+            <div class="element-name">
+                <p>Plus longue série de victoires</p>
+            </div>
+            <div class="many-content">
+                <div class="element-content">
+                    <p>Qatar Saint Germain</p>
+                </div>
+            </div>
+        </div>
+        <div class="page-element">
+            <div class="element-name">
+                <p>Plus longue série de défaites</p>
+            </div>
+            <div class="many-content">
+                <div class="element-content">
+                    <p>Toulouse</p>
+                </div>
+                <div class="element-content">
+                    <p>Brest</p>
+                </div>
+            </div>
+        </div>
+        <div class="page-element">
+            <div class="element-name">
+                <p>Plus longue série d'invincibilité</p>
+            </div>
+            <div class="many-content">
+                <div class="element-content">
+                    <p>Bad Gones</p>
+                </div>
+            </div>
+        </div>
+        <div class="page-element">
+            <div class="element-name">
+                <p>Plus longue série sans victoire</p>
+            </div>
+            <div class="many-content">
+                <div class="element-content">
+                    <p>Les verts</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="nationalities">
+
+    </div>
+
+</div>
+
+<script type="module" src="../js/season-information.js"></script>
+
+</body>
+</html>
