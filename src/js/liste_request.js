@@ -97,7 +97,7 @@ export class listeRequest{
                     ?team dbo:team ?club.
                     ?club dbp:fullname ?teamName.
                     FILTER(strlen(?teamName) != 0).
-                    FILTER(contains(lcase(?teamName),"${param}")).
+                    FILTER(contains(lcase(?teamName),lcase("${param}"))).
         }
         `
     }
