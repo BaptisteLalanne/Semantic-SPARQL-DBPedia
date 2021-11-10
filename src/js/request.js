@@ -1,11 +1,3 @@
-console.log("loading request.js...");
-
-/*
-------------------------------------------------------
-                GENERIC FUNCTIONS
-------------------------------------------------------
-*/
-
 // send request and get data
 // req: request command
 // onload: callback function
@@ -27,7 +19,4 @@ function search(req, onload) {
     // sending request
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
-}
-
-console.log("request.js loaded!");
- 
+} 
