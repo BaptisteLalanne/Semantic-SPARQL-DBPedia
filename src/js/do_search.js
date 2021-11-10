@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // display teams
         for (let t of Object.keys(teams_found)) {
-            display_team(teams_container, t);
+            display_team(teams_results, t);
         }
 
     });
