@@ -36,6 +36,8 @@ document.addEventListener("DOMContentLoaded", function() {
         for (let t of Object.keys(teams_found)) {
             display_team(teams_results, t);
         }
+        hideSpinner();
+        showContent();
 
     });
 
@@ -47,4 +49,12 @@ function display_team(parent, team_name) {
     // TODO: set link to specific team page
     let container = e("div", "", parent, "col-lg-4 col-md-6 m-3 team_container");
     let title = e("h3", team_name, container);
+}
+
+function hideSpinner() {
+    document.getElementById('spinner').style.display = 'none';
+}
+
+function showContent() {
+    document.getElementById("results_container").style.display = 'block';
 }

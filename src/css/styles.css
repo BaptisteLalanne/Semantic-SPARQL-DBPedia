@@ -297,7 +297,8 @@ datalist {
     color: white;
 }
 
-#results_container h2 {
+#results_container {
+    display: none;
     font-weight: bold;
 }
 
