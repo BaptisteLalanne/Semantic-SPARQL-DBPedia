@@ -23,62 +23,69 @@
 </head>
 <body class="page-infos">
 <button class="btn ligue1-button-outline my-2 my-sm-0 go-home" onclick="window.location.href = 'index.html'">Accueil</button>
-<div>
-    <div class="header-page">
-        <div class="header-title">
-            <h1 id="player_name">MEMPHIS DEPAY</h1>
-        </div>
+<div id="middleSpinner">
+    <div id="spinner" class="spinner-grow" role="status">
+        <span class="sr-only col">Loading...</span>
     </div>
-    <div id="page-elements">
-        <div class="page-element" id="description-element">
-            <div class="element-name">
-                <p>Description</p>
+</div>
+<div>
+    <div id="results_container">
+        <div class="header-page">
+            <div class="header-title">
+                <h1 id="player_name">MEMPHIS DEPAY</h1>
             </div>
-            <p id="description">
-            </p>
         </div>
+        <div id="page-elements">
+            <div class="page-element" id="description-element">
+                <div class="element-name">
+                    <p>Description</p>
+                </div>
+                <p id="description">
+                </p>
+            </div>
 
-        <div class="page-element">
-            <div class="element-name">
-                <p>Date de naissance</p>
-            </div>
-            <div class="element-content">
-                <p id="birth_date"></p>
-            </div>
-        </div>
-        <div class="page-element">
-            <div class="element-name">
-                <p>Taille</p>
-            </div>
-            <div class="element-content">
-                <p id="height"></p>
-            </div>
-        </div>
-        <div class="page-element">
-            <div class="element-name">
-                <p>Poste</p>
-            </div>
-            <div class="element-content">
-                <p id="position"></p>
-            </div>
-        </div>
-        <div class="page-element">
-            <div class="element-name">
-                <p>Clubs fréqentés</p>
-            </div>
-            <div class="many-content" id="clubs">
+            <div class="page-element">
+                <div class="element-name">
+                    <p>Date de naissance</p>
+                </div>
                 <div class="element-content">
-                    <p></p>
+                    <p id="birth_date"></p>
                 </div>
             </div>
-        </div>
-        <div class="page-element">
-            <div class="element-name">
-                <p>Equipe nationale</p>
-            </div>
-            <div class="many-content" id="national_teams">
+            <div class="page-element">
+                <div class="element-name">
+                    <p>Taille</p>
+                </div>
                 <div class="element-content">
-                    <p></p>
+                    <p id="height"></p>
+                </div>
+            </div>
+            <div class="page-element">
+                <div class="element-name">
+                    <p>Poste</p>
+                </div>
+                <div class="element-content">
+                    <p id="position"></p>
+                </div>
+            </div>
+            <div class="page-element">
+                <div class="element-name">
+                    <p>Clubs fréqentés</p>
+                </div>
+                <div class="many-content" id="clubs">
+                    <div class="element-content">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <div class="page-element">
+                <div class="element-name">
+                    <p>Equipe nationale</p>
+                </div>
+                <div class="many-content" id="national_teams">
+                    <div class="element-content">
+                        <p></p>
+                    </div>
                 </div>
             </div>
         </div>

@@ -23,79 +23,86 @@
 </head>
 <body class="page-infos">
 <button class="btn ligue1-button-outline my-2 my-sm-0 go-home" onclick="window.location.href = 'index.html'">Accueil</button>
-<div>
-    <div class="header-page">
-        <div id="teamname_result" class="header-title">
-            <h1></h1>
-        </div>
-        <img src="../../resources/img/logo/Olympique_lyonnais_(logo).svg%20(1).png">
+<div id="middleSpinner">
+    <div id="spinner" class="spinner-grow" role="status">
+        <span class="sr-only col">Loading...</span>
     </div>
-    <div id="page-elements">
-        <div class="page-element" id="description-element">
-            <div class="element-name">
-                <p>Description</p>
+</div>
+<div>
+    <div id="results_container">
+        <div class="header-page">
+            <div id="teamname_result" class="header-title">
+                <h1></h1>
             </div>
-            <p id="description"></p>
+            <img src="../../resources/img/logo/Olympique_lyonnais_(logo).svg%20(1).png">
         </div>
-
-        <div class="page-element">
-            <div class="element-name">
-                <p>Président</p>
-            </div>
-            <div id="president_result" class="many-content">
-            </div>
-        </div>
-        <div class="page-element">
-            <div class="element-name">
-                <p>Stade</p>
-            </div>
-            <div class="content-with-img">
-                <div class="many-content">
-                    <div id="stadeName_result" class="element-content">
-                    </div>
-                    <div id="stadeSize_result" class="element-content">
-                    </div>
+        <div id="page-elements">
+            <div class="page-element" id="description-element">
+                <div class="element-name">
+                    <p>Description</p>
                 </div>
-                <div class="element-content img-content"></div>
+                <p id="description"></p>
             </div>
-        </div>
-        <div class="page-element">
-            <div class="element-name">
-                <p>Classement final</p>
-            </div>
-            <div id="classement_result" class="element-content">
-            </div>
-        </div>
-        <div class="page-element">
-            <div class="element-name">
-                <p>Meilleur buteur</p>
-            </div>
-            <div id="topscorer_result" class="element-content">
-            </div>
-        </div>
-        <div id="largeVictoire_result" class="page-element">
-            <div class="element-name">
-                <p>Plus large victoire</p>
-            </div>
-        </div>
-        <div id="largeDefaite_result" class="page-element">
-            <div class="element-name">
-                <p>Plus large défaite</p>
-            </div>
-        </div>
-        <div class="page-element">
-            <div class="element-name">
-                <p>Entraineur(s)</p>
-            </div>
-            <div id="entraineurs_result" class="many-content">
 
+            <div class="page-element">
+                <div class="element-name">
+                    <p>Président</p>
+                </div>
+                <div id="president_result" class="many-content">
+                </div>
             </div>
-        </div>
-        <div class="page-element" id="players-element">
-            <div class="element-name">
-                <p>Joueurs</p>
+            <div class="page-element">
+                <div class="element-name">
+                    <p>Stade</p>
+                </div>
+                <div class="content-with-img">
+                    <div class="many-content">
+                        <div id="stadeName_result" class="element-content">
+                        </div>
+                        <div id="stadeSize_result" class="element-content">
+                        </div>
+                    </div>
+                    <div class="element-content img-content"></div>
+                </div>
             </div>
-            <div id="players-grid">
+            <div class="page-element">
+                <div class="element-name">
+                    <p>Classement final</p>
+                </div>
+                <div id="classement_result" class="element-content">
+                </div>
+            </div>
+            <div class="page-element">
+                <div class="element-name">
+                    <p>Meilleur buteur</p>
+                </div>
+                <div id="topscorer_result" class="element-content">
+                </div>
+            </div>
+            <div id="largeVictoire_result" class="page-element">
+                <div class="element-name">
+                    <p>Plus large victoire</p>
+                </div>
+            </div>
+            <div id="largeDefaite_result" class="page-element">
+                <div class="element-name">
+                    <p>Plus large défaite</p>
+                </div>
+            </div>
+            <div class="page-element">
+                <div class="element-name">
+                    <p>Entraineur(s)</p>
+                </div>
+                <div id="entraineurs_result" class="many-content">
+
+                </div>
+            </div>
+            <div class="page-element" id="players-element">
+                <div class="element-name">
+                    <p>Joueurs</p>
+                </div>
+                <div id="players-grid">
+                </div>
             </div>
         </div>
     </div>

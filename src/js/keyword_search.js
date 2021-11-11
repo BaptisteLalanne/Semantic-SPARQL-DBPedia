@@ -37,8 +37,6 @@ document.addEventListener("DOMContentLoaded", function() {
         for (let t of Object.keys(teams_found)) {
             display_team(teams_results, t, teams_found[t]);
         }
-        hideSpinner();
-        showContent();
 
     });
 
