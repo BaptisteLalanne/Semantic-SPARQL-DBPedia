@@ -75,6 +75,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 function hideSpinner() {
-    document.getElementById('spinner').style.display = 'none';
+    document.getElementById('spinner').remove();
+    document.getElementById('middleSpinner').remove();
 }
 
