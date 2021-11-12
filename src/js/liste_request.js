@@ -321,7 +321,8 @@ export class listeRequest{
         `;
     }
 
-    static pagePlayer = (param) => {
+    static pagePlayer = (parameter) => {
+        let param= decodeURI(parameter);
         return `
             PREFIX dbo: <http://dbpedia.org/ontology/>
             PREFIX dbr: <http://dbpedia.org/resource/>
