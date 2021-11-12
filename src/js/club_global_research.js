@@ -89,6 +89,12 @@ document.addEventListener("DOMContentLoaded", function() {
             let node = players_node.cloneNode(true);
             let p = node.querySelector("p");
             p.innerHTML = t;
+
+            let tmp_resource = joueurs[t].split("/");
+            tmp_resource = encodeURI(tmp_resource[tmp_resource.length-1]);
+
+            // TODO: change a href with tmp_resource 
+
             document.getElementById("players-grid").appendChild(node);
         }
         players_node.remove();

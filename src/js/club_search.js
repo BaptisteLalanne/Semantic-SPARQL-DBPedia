@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (correct) {
             let tmp_resource1 = tab_clubs[user_input1].split("/");
             let tmp_resource2 = tab_clubs[user_input2].split("/");
-            let new_url = "./compare.html?";
+            let new_url = "./compare-clubs.html?";
             new_url += "resource1=" + encodeURI(tmp_resource1[tmp_resource1.length-1]) + "&";
             new_url += "resource2=" + encodeURI(tmp_resource2[tmp_resource2.length-1]);
             window.location.href = new_url;
