@@ -99,6 +99,21 @@ export class listeRequest{
         }`;
     }
 
+    static palmaresLigue1 = (param) => {
+        return `
+        PREFIX dbo: <http://dbpedia.org/ontology/>
+        select distinct
+        STR(?winners) as ?TitleWins  
+        where{  
+        ?teamlink dbo:season dbr:2020–21_Ligue_1; 
+        rdfs:label ?team; 
+        ^dbp:winners ?winnerslink.
+        ?winnerslink rdfs:label ?winners. 
+        FILTER(SUBSTR(STR(?winners), strlen(STR(?winners)),1)="1" && lang(?winners)="en" && lang(?team) ="en") 
+        FILTER(contains(?team, '${param}'))
+        }`;
+    }
+
     static pageClubSansJoueurs = (param) => {
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
