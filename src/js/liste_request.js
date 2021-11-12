@@ -219,16 +219,56 @@ export class listeRequest{
             PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
             select STR(?nom) as ?nomJoueur, STR(?date) as ?dateDeNaissance, STR(?description) as ?descriptionJoueur, STR(?taille) as ?tailleJoueur, STR(?nomClub) as ?historiqueClubJoueur, STR(?poste) as ?posteJoueur, STR(?nomEquipeNationaleNoString) as ?nomEquipeNationale
             where {
-                dbr:${param} dbp:name ?nom;
-                dbo:birthDate ?date;
-                dbo:abstract ?description;
-                dbo:position ?position;
-                dbp:nationalteam ?equipeNationale;
-                dbp:height ?taille;
-                dbo:team ?listeEquipe.
-                ?equipeNationale rdfs:label ?nomEquipeNationaleNoString.
-                ?listeEquipe dbp:fullname ?nomClub.
-                ?position rdfs:label ?poste.
+                
+                bind( "pas de données"  as ?default_nationalteam).
+                optional {
+                dbr:${param} dbp:nationalteam ?equipeNationale.
+                ?equipeNationale rdfs:label ?nomEquipeNationaleNoStringg.
+                }
+                bind(coalesce(?nomEquipeNationaleNoStringg, ?default_nationalteam) as ?nomEquipeNationaleNoString)
+                
+                bind( "pas de données"  as ?default_nom).
+                optional {
+                dbr:${param} dbp:name ?name.
+                }
+                bind(coalesce(?name, ?default_nom) as ?nom)
+                
+                bind( "pas de données"  as ?default_date).
+                optional {
+                dbr:${param} dbo:birthDate ?Date.
+                }
+                bind(coalesce(?Date, ?default_date) as ?date)
+                
+                
+                bind( "pas de données"  as ?default_description).
+                optional {
+                dbr:${param} dbo:abstract ?Description.
+                }
+                bind(coalesce(?Description, ?default_description) as ?description)
+                
+                bind( "pas de données"  as ?default_poste).
+                optional {
+                dbr:${param} dbo:position ?position.
+                ?position rdfs:label ?Poste.
+                }
+                bind(coalesce(?Poste, ?default_poste) as ?poste)
+                
+                
+                
+                bind( "pas de données"  as ?default_taille).
+                optional {
+                dbr:${param} dbp:height ?Taille.
+                }
+                bind(coalesce(?Taille, ?default_taille) as ?taille)
+                
+                
+                bind( "pas de données"  as ?default_nomClub).
+                optional {
+                dbr:${param} dbo:team ?listeEquipe.
+                                ?listeEquipe dbp:fullname ?NomClub.
+                }
+                bind(coalesce(?NomClub, ?default_nomClub) as ?nomClub)
+                
                 FILTER(langMatches(lang(?poste),"fr"))
                 FILTER(langMatches(lang(?description),"fr"))
                 FILTER(langMatches(lang(?nomEquipeNationaleNoString),"fr"))
