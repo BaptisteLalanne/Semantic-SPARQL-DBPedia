@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
     search(request, (data) => {
 
         let objects_found = data.results.bindings;
+        console.log(objects_found);
         let description;
         let presidents={};
         let nomClub ;
