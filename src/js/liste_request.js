@@ -110,7 +110,6 @@ export class listeRequest{
         dbo:team ?nomLink;
         dbp:leagueTopscorer ?meilleurButeurLink;
         dbo:manager ?coach;
-        dbp:name ?joueurs;
         dbo:ground ?stade.
         
         bind( "pas de données" as ?default_nom).

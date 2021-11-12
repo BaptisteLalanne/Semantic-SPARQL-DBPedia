@@ -1,5 +1,5 @@
 import { listeRequest } from "./liste_request.js";
-
+let firstRequestDone = false;
 document.addEventListener("DOMContentLoaded", function() {
 
     console.log("club_global_research.js");
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let params = get_query();
     let search_query = decodeURI(params["resource"]);
     let request = "";
-    request = listeRequest.pageClub(search_query);
+    request = listeRequest.pageClubSansJoueurs(search_query);
     search(request, (data) => {
 
         let objects_found = data.results.bindings;
@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function() {
         let meilleurbuteur;
         let meilleurbuteurLink;
         let entraineurs = {};
-        let joueurs= {};
         let nomStade;
         let placesStade;
         let plusLargeVictoire={};
@@ -43,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function() {
         for (let o of objects_found) {
             presidents[o["nomPresident"]["value"]]=o["nomPresident"]["value"];
             entraineurs[o["nomEntraineur"]["value"]]= o["nomEntraineur"]["value"];
-            joueurs[o["joueursNoms"]["value"]]= o["joueursLink"]["value"];
             description = o["description"]["value"];
             nomClub= o["nom"]["value"];
             classement= o["classement"]["value"];
@@ -83,22 +81,6 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("entraineurs_result").appendChild(node);
         }
         trainers_node.remove();
-
-        // clone the node of the players
-        let players_node = document.getElementById("players-grid").lastElementChild;
-        for (let t of Object.keys(joueurs)) {
-            let node = players_node.cloneNode(true);
-            let p = node.querySelector("p");
-            p.innerHTML = t;
-
-            let tmp_resource = joueurs[t].split("/");
-            tmp_resource = encodeURI(tmp_resource[tmp_resource.length-1]);
-            let a = node.querySelector("a");
-            a.href = "./player.html?resource=" + tmp_resource;
-
-            document.getElementById("players-grid").appendChild(node);
-        }
-        players_node.remove();
 
         // clone the nodes of the biggestWins
         let biggestWin_node = document.getElementById("largeVictoire_result").lastElementChild;
@@ -152,9 +134,50 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         biggestLost_node.remove();
 
-        hideSpinner();
-        showContent();
+        if(!firstRequestDone) {
+            firstRequestDone = true;
+        } else {
+            hideSpinner();
+            showContent();
+        }
+    });
 
+    let requestJoueurs = "";
+    requestJoueurs = listeRequest.pageClubJoueurs(search_query);
+    search(requestJoueurs, (data) => {
+
+        let objects_found = data.results.bindings;
+        console.log(objects_found);
+        let joueurs= {};
+
+        for (let o of objects_found) {
+            joueurs[o["joueursNoms"]["value"]]= o["joueursLink"]["value"];
+        }
+
+        // display results
+
+        // clone the node of the players
+        let players_node = document.getElementById("players-grid").lastElementChild;
+        for (let t of Object.keys(joueurs)) {
+            let node = players_node.cloneNode(true);
+            let p = node.querySelector("p");
+            p.innerHTML = t;
+
+            let tmp_resource = joueurs[t].split("/");
+            tmp_resource = encodeURI(tmp_resource[tmp_resource.length-1]);
+            let a = node.querySelector("a");
+            a.href = "./player.html?resource=" + tmp_resource;
+
+            document.getElementById("players-grid").appendChild(node);
+        }
+        players_node.remove();
+
+        if(!firstRequestDone) {
+            firstRequestDone = true;
+        } else {
+            hideSpinner();
+            showContent();
+        }
     });
 
 });
