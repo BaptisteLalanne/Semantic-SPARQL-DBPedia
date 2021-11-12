@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // get query parameters (GET)
     let params = get_query();
     let search_query = params["resource"].replace("+", "_");
+    search_query = search_query.replace("(", "\\(");
+    search_query = search_query.replace(")", "\\)");
+
 
     // do player search
     let request = listeRequest.pagePlayer(search_query)
