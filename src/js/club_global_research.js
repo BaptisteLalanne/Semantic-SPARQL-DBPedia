@@ -168,6 +168,39 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    const regex = /_.*_/;
+    let found = search_query.match(regex);
+    found = found[0].replaceAll("_"," ").trim();
+    request = listeRequest.palmaresLigue1(found);
+
+    search(request, (data) => {
+
+        let palmares_node = document.querySelector("#palmares_result");
+        let palmares_result = document.querySelector("#palmares_result").lastElementChild;
+
+        let objects_found = data.results.bindings;
+        let palmares = []
+
+        const regexTitle = /[0-9]{4}.[0-9]{2}/
+        for (let o of objects_found) {
+            palmares.push(o["TitleWins"]["value"].match(regexTitle)[0]);
+        }
+
+        for (let year of palmares) {
+            let nodePalmares = palmares_result.cloneNode(true);
+            let p = nodePalmares.querySelector(".year-win");
+            p.innerHTML = year;
+            palmares_node.appendChild(nodePalmares);
+        }
+
+        if (objects_found.length === 0) {
+            palmares_result.querySelector(".year-win").innerHTML = 'Aucun titre de Ligue 1'
+        } else {
+            palmares_result.remove()
+        }
+
+    });
+
 });
 
 function hideSpinner() {
