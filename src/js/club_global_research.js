@@ -1,5 +1,4 @@
 import { listeRequest } from "./liste_request.js";
-let firstRequestDone = false;
 document.addEventListener("DOMContentLoaded", function() {
 
     console.log("club_global_research.js");
@@ -122,12 +121,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         biggestLost_node.remove();
 
-        if(!firstRequestDone) {
-            firstRequestDone = true;
-        } else {
-            hideSpinner();
-            showContent();
-        }
+        hideSpinner();
+        showContent();
+
     });
 
     let requestJoueurs = "";
@@ -160,12 +156,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         players_node.remove();
 
-        if(!firstRequestDone) {
-            firstRequestDone = true;
-        } else {
-            hideSpinner();
-            showContent();
-        }
+
+
     });
 
     const regex = /_.*_/;
