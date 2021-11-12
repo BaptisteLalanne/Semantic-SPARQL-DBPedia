@@ -126,7 +126,8 @@ function display_Victoires_Defaites(parent, element){
 }
 
 function hideSpinner() {
-    document.getElementById('spinner').style.display = 'none';
+    document.getElementById('spinner').remove();
+    document.getElementById('middleSpinner').remove();
 }
 
 function showContent() {

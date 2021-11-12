@@ -43,4 +43,15 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
     });
+    hideSpinner();
+    showContent();
 });
+
+function hideSpinner() {
+    document.getElementById('spinner').remove();
+    document.getElementById('middleSpinner').remove();
+}
+
+function showContent() {
+    document.getElementById("results_container").style.display = 'block';
+}

@@ -1,9 +1,9 @@
 import { listeRequest } from "./liste_request.js";
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", makeSearch);
+function makeSearch(event) {
 
     console.log("keyword_search.js");
-
     // get dom elements
     let results_container = document.querySelector("#results_container");
     let teams_container = document.querySelector("#teams_container");
@@ -11,10 +11,22 @@ document.addEventListener("DOMContentLoaded", function() {
     let players_container = document.querySelector("#players_container");
     let players_results = document.querySelector("#players_results");
     let span_searched = document.querySelector("span#searched");
-
-    // get query parameters (GET)
-    let params = get_query();
-    let search_query = params["search"].replace("+", " ");
+    let searchInput = document.getElementById("searchInput");
+    // Value written in the search field
+    let dynamicValue = searchInput.value;
+    let search_query;
+    // Difference between fist loading and next ones
+    if(event.type == "input"){
+        search_query = dynamicValue;
+        showLittleSpinner();
+    } else{
+        // get query parameters (GET)
+        let params = get_query();
+        search_query = params["search"].replace("+", " ");
+        searchInput.value = search_query;
+    }
+    // Make query on each input
+    searchInput.oninput = makeSearch ;
 
     // display query
     span_searched.innerHTML = search_query
@@ -24,7 +36,11 @@ document.addEventListener("DOMContentLoaded", function() {
     // do team search
     request = listeRequest.searchTeam(search_query)
     search(request, (data) => {
-
+        // if dynamic reseach, need to clean old result
+        if(dynamicValue){
+            // clean old results
+            teams_results.innerHTML = '';
+        }
         // format results in dictionnary
         let objects_found = data.results.bindings;
         let teams_found = {};
@@ -43,7 +59,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // do player search
     request = listeRequest.searchPlayer(search_query)
     search(request, (data) => {
-
+        if(dynamicValue){
+            // clean old results
+            players_results.innerHTML = '';
+        }
         // format results in dictionnary
         let objects_found = data.results.bindings;
         let players_found = {};
@@ -57,13 +76,16 @@ document.addEventListener("DOMContentLoaded", function() {
         for (let p of Object.keys(players_found)) {
             display_player(players_results, p, players_found[p]);
         }
-        hideSpinner();
-        showContent();
-        
 
+        if(event.type == "input"){
+            hideLittleSpinner();
+        } else{
+            hideSpinner();
+        }
+        showContent();
     });
 
-});
+}
 
 function display_team(parent, team_name, resource) {
 
@@ -116,9 +138,22 @@ function display_player(parent, player_name, resource) {
 }
 
 function hideSpinner() {
-    document.getElementById('spinner').style.display = 'none';
+    document.getElementById('spinner').remove();
+    document.getElementById('middleSpinner').remove();
+}
+
+function hideContent() {
+    document.getElementById("results_container").style.display = 'none';
 }
 
 function showContent() {
     document.getElementById("results_container").style.display = 'block';
+}
+
+function showLittleSpinner() {
+    document.getElementById('little-spinner').style.display = 'block';
+}
+
+function hideLittleSpinner() {
+    document.getElementById("little-spinner").style.display = 'none';
 }
