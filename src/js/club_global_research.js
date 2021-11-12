@@ -70,7 +70,9 @@ document.addEventListener("DOMContentLoaded", function() {
             display_Entraineurs_Pres(entraineurs_result,t)
         }
         for (let t of Object.keys(joueurs)) {
-            display_Joueurs(joueurs_result,joueurs[t],t);
+            let tmp_resource = joueurs[t].split("/");
+            tmp_resource = encodeURI(tmp_resource[tmp_resource.length-1]);
+            display_Joueurs(joueurs_result,tmp_resource,t);
         }
         for (let t of Object.keys(plusLargeVictoire)) {
             display_Victoires_Defaites(largeVictoire_result,t);
@@ -105,7 +107,8 @@ function display_Joueurs(parent, elementLink, element){
     let divPlayerName = e("div", "", divPlayer, "player-name");
     let title = e("p",element, divPlayerName);
     let divPlayerLink = e("div", "", divPlayer, "player-link");
-    let button = e("button", "Fiche joueur", divPlayerLink, "btn ligue1-button-outline");
+    let link = e("a", "Fiche joueur", divPlayerLink, "btn ligue1-button-outline");
+    link.href="./player.html?resource=" + elementLink;
     // TODO : rediriger le button vers la fiche joueur à l'aide de "elementLink"
 }
 
