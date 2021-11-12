@@ -13,11 +13,13 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(resource1);
     console.log(resource2);
 
+    // send request for first team
     let req_team1 = listeRequest.compareClub();
     search(req_team1, (data) => {
 
     });
 
+    // send request for second team
     let req_team2 = listeRequest.compareClub();
     search(req_team2, (data) => {
 

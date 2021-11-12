@@ -201,7 +201,7 @@ export class listeRequest{
                 SELECT ?defaites WHERE { dbr:${param} dbp:l ?defaites} ORDER BY DESC(?defaites) LIMIT 1
             }
             {
-                SELECT ?vic'toires WHERE { dbr:${param} dbp:w ?victoires} ORDER BY DESC(?victoires) LIMIT 1
+                SELECT ?victoires WHERE { dbr:${param} dbp:w ?victoires} ORDER BY DESC(?victoires) LIMIT 1
             }
             {
                 SELECT ?matchsNuls WHERE { dbr:${param} dbp:d ?matchsNuls} ORDER BY DESC(?matchsNuls) LIMIT 1
