@@ -92,8 +92,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
             let tmp_resource = joueurs[t].split("/");
             tmp_resource = encodeURI(tmp_resource[tmp_resource.length-1]);
-
-            // TODO: change a href with tmp_resource 
+            let a = node.querySelector("a");
+            a.href = "./player.html?resource=" + tmp_resource;
 
             document.getElementById("players-grid").appendChild(node);
         }
