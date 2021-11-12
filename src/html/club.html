@@ -31,8 +31,8 @@
 <div>
     <div id="results_container">
         <div class="header-page">
-            <div id="teamname_result" class="header-title">
-                <h1></h1>
+            <div class="header-title">
+                <h1 id = "teamname_result"></h1>
             </div>
             <img src="../../resources/img/logo/Olympique_lyonnais_(logo).svg%20(1).png">
         </div>
@@ -49,6 +49,9 @@
                     <p>Président</p>
                 </div>
                 <div id="president_result" class="many-content">
+                    <div class="element-content">
+                        <p>Bernard Serin</p>
+                    </div>
                 </div>
             </div>
             <div class="page-element">
@@ -57,9 +60,11 @@
                 </div>
                 <div class="content-with-img">
                     <div class="many-content">
-                        <div id="stadeName_result" class="element-content">
+                        <div class="element-content">
+                            <p id="stadeName_result"></p>
                         </div>
-                        <div id="stadeSize_result" class="element-content">
+                        <div class="element-content">
+                            <p id="stadeSize_result"></p>
                         </div>
                     </div>
                     <div class="element-content img-content"></div>
@@ -69,24 +74,56 @@
                 <div class="element-name">
                     <p>Classement final</p>
                 </div>
-                <div id="classement_result" class="element-content">
+                <div class="element-content">
+                    <p id="classement_result"></p>
                 </div>
             </div>
             <div class="page-element">
                 <div class="element-name">
                     <p>Meilleur buteur</p>
                 </div>
-                <div id="topscorer_result" class="element-content">
+                <div class="element-content">
+                    <p id="topscorer_result"></p>
                 </div>
             </div>
-            <div id="largeVictoire_result" class="page-element">
+            <div class="page-element">
                 <div class="element-name">
                     <p>Plus large victoire</p>
                 </div>
+                <div class="many-content">
+                    <div id="largeVictoire_result">
+                        <div class="containerLargeVictoire">
+                            <div class="element-content team-score team1">
+                                <p>Marseille</p>
+                            </div>
+                            <div class="element-content score">
+                                <p>3-0</p>
+                            </div>
+                            <div class="element-content team-score team2">
+                                <p>Lyon</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="largeDefaite_result" class="page-element">
+            <div class="page-element">
                 <div class="element-name">
                     <p>Plus large défaite</p>
+                </div>
+                <div class="many-content">
+                    <div id="largeDefaite_result">
+                        <div class="containerLargeDefaite">
+                            <div class="element-content team-score team1">
+                                <p>Bordeaux</p>
+                            </div>
+                            <div class="element-content score">
+                                <p>0-6</p>
+                            </div>
+                            <div class="element-content team-score team2">
+                                <p>Dijon</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="page-element">
@@ -94,7 +131,9 @@
                     <p>Entraineur(s)</p>
                 </div>
                 <div id="entraineurs_result" class="many-content">
-
+                    <div class="element-content">
+                        <p>Frédérixxc Antonetti</p>
+                    </div>
                 </div>
             </div>
             <div class="page-element" id="players-element">
@@ -102,6 +141,14 @@
                     <p>Joueurs</p>
                 </div>
                 <div id="players-grid">
+                    <div id="player-result" class="player">
+                        <div class="player-name">
+                            <p>Memphis Depay</p>
+                        </div>
+                        <div class="player-link">
+                            <button class="btn ligue1-button-outline">Fiche joueur</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

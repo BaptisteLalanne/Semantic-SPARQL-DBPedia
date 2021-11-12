@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function() {
     let search_query = decodeURI(params["resource"]);
     let request = "";
     request = listeRequest.pageClub(search_query);
-    console.log(search_query);
     search(request, (data) => {
 
         let objects_found = data.results.bindings;
@@ -56,30 +55,101 @@ document.addEventListener("DOMContentLoaded", function() {
 
         }
         // display results
-        display_p(description_result, description);
-        display_NomClub(teamname_result, nomClub);
-        display_p(classement_result, classement);
-        display_p(topscorer_result, meilleurbuteur);
-        display_p(stadeName_result, nomStade);
-        display_p(stadeSize_result, placesStade);
 
+        description_result.innerHTML= description;
+        teamname_result.innerHTML = nomClub;
+        classement_result.innerHTML = classement;
+        topscorer_result.innerHTML = meilleurbuteur;
+        stadeName_result.innerHTML = nomStade;
+        stadeSize_result.innerHTML = placesStade;
+
+        // clone the node of the presidents
+        let presidents_node = document.getElementById("president_result").lastElementChild;
         for (let t of Object.keys(presidents)) {
-            display_Entraineurs_Pres(president_result, t);
+            let node = presidents_node.cloneNode(true);
+            let p = node.querySelector("p");
+            p.innerHTML = t;
+            document.getElementById("president_result").appendChild(node);
         }
+        presidents_node.remove();
+
+        // clone the node of the trainers
+        let trainers_node = document.getElementById("entraineurs_result").lastElementChild;
         for (let t of Object.keys(entraineurs)) {
-            display_Entraineurs_Pres(entraineurs_result,t)
+            let node = trainers_node.cloneNode(true);
+            let p = node.querySelector("p");
+            p.innerHTML = t;
+            document.getElementById("entraineurs_result").appendChild(node);
         }
+        trainers_node.remove();
+
+        // clone the node of the players
+        let players_node = document.getElementById("players-grid").lastElementChild;
         for (let t of Object.keys(joueurs)) {
+            let node = players_node.cloneNode(true);
+            let p = node.querySelector("p");
+            p.innerHTML = t;
+
             let tmp_resource = joueurs[t].split("/");
             tmp_resource = encodeURI(tmp_resource[tmp_resource.length-1]);
-            display_Joueurs(joueurs_result,tmp_resource,t);
+
+            // TODO: change a href with tmp_resource 
+
+            document.getElementById("players-grid").appendChild(node);
         }
+        players_node.remove();
+
+        // clone the nodes of the biggestWins
+        let biggestWin_node = document.getElementById("largeVictoire_result").lastElementChild;
         for (let t of Object.keys(plusLargeVictoire)) {
-            display_Victoires_Defaites(largeVictoire_result,t);
+            console.log(biggestWin_node);
+            let team1 = t.substring(0, t.indexOf(" "));
+            let tmp = t.substring(t.indexOf(" ")+1);
+            let team2 = tmp.substring(tmp.indexOf(" ")+1);
+            let score = tmp.substring(0,tmp.indexOf(" "));
+
+            let node = biggestWin_node.cloneNode(true);
+            let div1 = node.querySelector(".team-score.team1");
+            console.log(div1);
+            let p1 = div1.querySelector("p");
+            p1.innerHTML = team1;
+            let div2 = node.querySelector(".element-content.score");
+            console.log(div2);
+            let p2 = div2.querySelector("p");
+            p2.innerHTML = score;
+            let div3 = node.querySelector(".team-score.team2");
+            console.log(div3);
+            let p3 = div3.querySelector("p");
+            p3.innerHTML = team2;
+            document.getElementById("largeVictoire_result").appendChild(node);
         }
+        biggestWin_node.remove();
+
+
+// clone the nodes of the biggestLosts
+        let biggestLost_node = document.getElementById("largeDefaite_result").lastElementChild;
         for (let t of Object.keys(plusLargeDefaite)) {
-            display_Victoires_Defaites(largeDefaite_result,t);
+            let team1 = t.substring(0, t.indexOf(" "));
+            let tmp = t.substring(t.indexOf(" ")+1);
+            let team2 = tmp.substring(tmp.indexOf(" ")+1);
+            let score = tmp.substring(0,tmp.indexOf(" "));
+
+            let node = biggestLost_node.cloneNode(true);
+            let div1 = node.querySelector(".team-score.team1");
+            console.log(div1);
+            let p1 = div1.querySelector("p");
+            p1.innerHTML = team1;
+            let div2 = node.querySelector(".element-content.score");
+            console.log(div2);
+            let p2 = div2.querySelector("p");
+            p2.innerHTML = score;
+            let div3 = node.querySelector(".team-score.team2");
+            console.log(div3);
+            let p3 = div3.querySelector("p");
+            p3.innerHTML = team2;
+            document.getElementById("largeDefaite_result").appendChild(node);
         }
+        biggestLost_node.remove();
 
         hideSpinner();
         showContent();
@@ -87,46 +157,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 });
-
-function display_p(parent, element) {
-    let title = e("p", element, parent);
-}
-
-function display_NomClub(parent, element) {
-    let title = e("h1", element, parent);
-}
-
-function display_Entraineurs_Pres(parent, element){
-    let div = e("div", "", parent, "element-content");
-    let title = e("p",element, div);
-}
-
-
-function display_Joueurs(parent, elementLink, element){
-    let divPlayer = e("div", "", parent, "player");
-    let divPlayerName = e("div", "", divPlayer, "player-name");
-    let title = e("p",element, divPlayerName);
-    let divPlayerLink = e("div", "", divPlayer, "player-link");
-    let link = e("a", "Fiche joueur", divPlayerLink, "btn ligue1-button-outline");
-    link.href="./player.html?resource=" + elementLink;
-    // TODO : rediriger le button vers la fiche joueur à l'aide de "elementLink"
-}
-
-
-function display_Victoires_Defaites(parent, element){
-    let team1 = element.substring(0, element.indexOf(" "));
-    let tmp = element.substring(element.indexOf(" ")+1);
-    let team2 = tmp.substring(tmp.indexOf(" ")+1);
-    let score = tmp.substring(0,tmp.indexOf(" "));
-
-    let mainDiv  = e("div", "", parent, "many-content");
-    let divTeam1 = e("div", "", mainDiv, "element-content team-score");
-    let title1 = e("p",team1, divTeam1);
-    let divScore = e("div", "", mainDiv, "element-content score");
-    let title2 = e("p",score, divScore);
-    let divTeam2 = e("div", "", mainDiv, "element-content team-score");
-    let title3 = e("p",team2, divTeam2);
-}
 
 function hideSpinner() {
     document.getElementById('spinner').remove();
