@@ -4,31 +4,55 @@ export class listeRequest{
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbr: <http://dbpedia.org/resource/>
         PREFIX dbp: <http://dbpedia.org/property/>
-        select STR(?nomPresident) as ?nomPresident, STR(?nom) as ?nom, STR(?descriptionNoString) as ?description,?resultat as ?classement, STR(?stadeName) as ?nomStade, ?meilleurButeurLink, STR(?meilleurButeur) as ?meilleurButeur, ?nombreDePlacesDansLeStade, STR(?nameCoach) as ?nomEntraineur,STR(?nomsJoueurs) as ?joueursNoms, ?joueurs as ?joueursLink, STR(?plusLargeVictoire_noString) as ?plusLargeVictoire, STR(?plusLargeDefaite_noString) as ?plusLargeDefaite
+        select STR(?nom) as ?nom, STR(?descriptionNoString) as ?description,?resultat as ?classement, STR(?stadeName) as ?nomStade, ?meilleurButeurLink, STR(?meilleurButeur) as ?meilleurButeur, ?nombreDePlacesDansLeStade, STR(?nameCoach) as ?nomEntraineur,STR(?nomsJoueurs) as ?joueursNoms, ?joueurs as ?joueursLink, STR(?plusLargeVictoire_noString) as ?plusLargeVictoire, STR(?plusLargeDefaite_noString) as ?plusLargeDefaite, STR(?presidentChoisiv3) as ?nomPresident
         where {
         dbr:${param} dbp:leagueResult ?resultat;
         dbo:team ?nomLink;
-        dbp:chairman ?nomPresident;
-        dbo:abstract ?descriptionNoString;
         dbp:leagueTopscorer ?meilleurButeurLink;
         dbo:manager ?coach;
         dbp:name ?joueurs;
         dbo:ground ?stade.
-        ?nomLink dbp:fullname ?nom.
-        ?meilleurButeurLink dbp:fullname ?meilleurButeur.
-        ?joueurs dbp:name ?nomsJoueurs.
-        ?coach dbp:name ?nameCoach.
-        ?stade dbo:seatingCapacity ?nombreDePlaces.
-        BIND(STR(?nombreDePlaces) as ?nombreDePlacesDansLeStade).
-        FILTER(langMatches(lang(?descriptionNoString),"fr"))
         
-        bind( "pas de données"  as ?default_win).
+        bind( "pas de données" as ?default_nom).
+        optional {
+        ?nomLink dbp:fullname ?nomFound.
+        }
+        bind(coalesce(?nomFound, ?default_nom) as ?nom)
+        
+        bind( "pas de données" as ?default_meilleurButeur).
+        optional {
+        ?meilleurButeurLink dbp:fullname ?meilleurButeurFound.
+        }
+        bind(coalesce(?meilleurButeurFound, ?default_meilleurButeur) as ?meilleurButeur)
+        
+        bind( "pas de données" as ?default_nomsJoueurs).
+        optional {
+        ?joueurs dbp:name ?nomsJoueursFound.
+        }
+        bind(coalesce(?nomsJoueursFound, ?default_nomsJoueurs) as ?nomsJoueurs)
+        filter(!contains(STR(?nomsJoueurs),"http://dbpedia.org/resource/Order_of_Merit_(Portugal)"))
+        
+        bind( "pas de données" as ?default_nameCoach).
+        optional {
+        ?coach dbp:name ?nameCoachFound.
+        }
+        bind(coalesce(?nameCoachFound, ?default_nameCoach) as ?nameCoach)
+        
+        bind( "pas de données" as ?default_nombreDePlaces).
+        optional {
+        ?stade dbo:seatingCapacity ?nombreDePlacesFound.
+        }
+        bind(coalesce(?nombreDePlacesFound, ?default_nombreDePlaces) as ?nombreDePlaces)
+        
+        bind(STR(?nombreDePlaces) as ?nombreDePlacesDansLeStade).
+        
+        bind( "pas de données" as ?default_win).
         optional {
         dbr:${param} dbp:largestWin ?bigWin.
         }
         bind(coalesce(?bigWin, ?default_win) as ?plusLargeVictoire_noString)
         
-        bind( "pas de données"  as ?default_stadeName).
+        bind( "pas de données" as ?default_stadeName).
         optional {
         ?stade dbp:fullname ?stadeNameFound.
         }
@@ -37,11 +61,41 @@ export class listeRequest{
         }
         bind(coalesce(?stadeNameFound, ?default_stadeName) as ?stadeName)
         
+        bind( "pas de données"  as ?default_descriptionNoString).
+        optional {
+        dbr:${param} dbo:abstract ?descriptionNoStringFound.
+        }
+        bind(coalesce(?descriptionNoStringFound, ?default_descriptionNoString) as ?descriptionNoString)
+        filter(langMatches(lang(?descriptionNoString),"fr"))
+        
         bind( "pas de données"  as ?default_loss).
         optional {
         dbr:${param} dbp:largestLoss ?bigLoss.
         }
         bind(coalesce(?bigLoss, ?default_loss) as ?plusLargeDefaite_noString)
+        
+        bind( "pas de données"  as ?default_president).
+        optional {
+        dbr:${param} dbp:chairman ?presidentFound.
+        }
+        bind(coalesce(?presidentFound, ?default_president) as ?presidentDBP)
+      
+        optional {
+        dbr:${param} dbo:chairman ?presidentDBO.
+        }
+        bind(coalesce(?presidentDBO, ?presidentDBP) as ?presidentChoisi)
+        
+        optional {
+        dbr:${param} dbo:chairman ?presidentDBOCurrent.
+        ?presidentDBOCurrent dbp:name ?nameDbo.
+        }
+        bind(coalesce(?nameDbo, ?presidentChoisi) as ?presidentChoisiv2)
+        
+        optional {
+        dbr:${param} dbp:chairman ?presidentDBPCurrent.
+        ?presidentDBPCurrent dbp:name ?nameDbp.
+        }
+        bind(coalesce(?nameDbp, ?presidentChoisiv2) as ?presidentChoisiv3)
         }`;
     }
 
