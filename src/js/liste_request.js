@@ -282,6 +282,23 @@ export class listeRequest{
         `
     }
 
+    static rank_club = () => {
+    return `
+    PREFIX dbo: <http://dbpedia.org/ontology/>
+    PREFIX dbp: <http://dbpedia.org/property/>
+    PREFIX dbr: <http://dbpedia.org/resource/>
+    PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+    select xsd:integer(?rankstr) as ?Rank STR(?realname) as ?Clubs
+    where {
+        ?team dbo:position dbr:2020–21_Ligue_1;
+        dbp:leagueResult ?rankstr.
+        ?team dbo:team ?realteam.
+        ?realteam dbp:clubname ?realname.
+        }
+    ORDER BY ?Rank
+    `
+    }
+
     static searchTeam = (param) => {
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
