@@ -6,16 +6,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // get dom elements
     let description_result = document.querySelector("#description-element");
-    let president_result = document.querySelector("#president_result");
     let teamname_result = document.querySelector("#teamname_result");
     let classement_result = document.querySelector("#classement_result");
     let topscorer_result = document.querySelector("#topscorer_result");
-    let entraineurs_result = document.querySelector("#entraineurs_result");
-    let joueurs_result = document.querySelector("#players-grid");
     let stadeName_result = document.querySelector("#stadeName_result");
     let stadeSize_result = document.querySelector("#stadeSize_result");
-    let largeVictoire_result = document.querySelector("#largeVictoire_result");
-    let largeDefaite_result = document.querySelector("#largeDefaite_result");
 
 
     // get query parameters (GET)
@@ -85,23 +80,19 @@ document.addEventListener("DOMContentLoaded", function() {
         // clone the nodes of the biggestWins
         let biggestWin_node = document.getElementById("largeVictoire_result").lastElementChild;
         for (let t of Object.keys(plusLargeVictoire)) {
-            console.log(biggestWin_node);
-            let team1 = t.substring(0, t.indexOf(" "));
-            let tmp = t.substring(t.indexOf(" ")+1);
-            let team2 = tmp.substring(tmp.indexOf(" ")+1);
-            let score = tmp.substring(0,tmp.indexOf(" "));
+            let teams = t.split(/[0-9]+/);
+            const score = t.split(teams[0])[1].split(teams[2])[0];
+            let team1 = teams[0].substring(0,teams[0].length-1);
+            let team2 = teams[2].substring(1);
 
             let node = biggestWin_node.cloneNode(true);
             let div1 = node.querySelector(".team-score.team1");
-            console.log(div1);
             let p1 = div1.querySelector("p");
             p1.innerHTML = team1;
             let div2 = node.querySelector(".element-content.score");
-            console.log(div2);
             let p2 = div2.querySelector("p");
             p2.innerHTML = score;
             let div3 = node.querySelector(".team-score.team2");
-            console.log(div3);
             let p3 = div3.querySelector("p");
             p3.innerHTML = team2;
             document.getElementById("largeVictoire_result").appendChild(node);
@@ -112,22 +103,19 @@ document.addEventListener("DOMContentLoaded", function() {
 // clone the nodes of the biggestLosts
         let biggestLost_node = document.getElementById("largeDefaite_result").lastElementChild;
         for (let t of Object.keys(plusLargeDefaite)) {
-            let team1 = t.substring(0, t.indexOf(" "));
-            let tmp = t.substring(t.indexOf(" ")+1);
-            let team2 = tmp.substring(tmp.indexOf(" ")+1);
-            let score = tmp.substring(0,tmp.indexOf(" "));
+            let teams = t.split(/[0-9]+/);
+            const score = t.split(teams[0])[1].split(teams[2])[0];
+            let team1 = teams[0].substring(0,teams[0].length-1);
+            let team2 = teams[2].substring(1);
 
             let node = biggestLost_node.cloneNode(true);
             let div1 = node.querySelector(".team-score.team1");
-            console.log(div1);
             let p1 = div1.querySelector("p");
             p1.innerHTML = team1;
             let div2 = node.querySelector(".element-content.score");
-            console.log(div2);
             let p2 = div2.querySelector("p");
             p2.innerHTML = score;
             let div3 = node.querySelector(".team-score.team2");
-            console.log(div3);
             let p3 = div3.querySelector("p");
             p3.innerHTML = team2;
             document.getElementById("largeDefaite_result").appendChild(node);
