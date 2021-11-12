@@ -66,13 +66,16 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         national_team_node.remove();
 
-        //hideSpinner();
-
+        hideSpinner();
+        showContent();
     });
 
 });
 
 
+function showContent() {
+    document.getElementById("results_container").style.display = 'block';
+}
 
 function hideSpinner() {
     document.getElementById('spinner').remove();
