@@ -488,8 +488,8 @@ export class listeRequest{
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbr: <http://dbpedia.org/resource/>
         PREFIX dbp: <http://dbpedia.org/property/>
-        select ?resultat as ?classement, STR(?nom) as ?nom, (?nombreButsEncaissesExterieur + ?nombreButsEncaissesDomicile) as ?nombresButsEncaisses,  (?nombreButsMarquesExterieur + ?nombreButsMarquesDomicile) as ?nombresButsMarques, ?victoires, ?defaites,
-        ?matchsNuls, ?nombreDePlacesDansLeStade, STR(?plusLargeVictoire_noString) as ?plusLargeVictoire, STR(?plusLargeDefaite_noString) as ?plusLargeDefaite
+        select STR(?resultat) as ?classement, STR(?nom) as ?nom, (?nombreButsEncaissesExterieur + ?nombreButsEncaissesDomicile) as ?nombresButsEncaisses,  (?nombreButsMarquesExterieur + ?nombreButsMarquesDomicile) as ?nombresButsMarques, STR(?victoires) as ?victoires, STR(?defaites) as ?defaites,
+        STR(?matchsNuls) as ?matchsNuls, ?nombreDePlacesDansLeStade, STR(?plusLargeVictoire_noString) as ?plusLargeVictoire, STR(?plusLargeDefaite_noString) as ?plusLargeDefaite
         where {
             dbr:${param} dbp:leagueResult ?resultat;
             dbo:team ?nomLink;
@@ -504,17 +504,21 @@ export class listeRequest{
             ?nomLink dbp:fullname ?nomFound.
             }
             bind(coalesce(?nomFound, ?default_nom) as ?nom)
-
-            {
-                SELECT ?defaites WHERE { dbr:${param} dbp:l ?defaites} ORDER BY DESC(?defaites) LIMIT 1
+            optional {
+            
+                {
+                    SELECT ?defaites_found WHERE { dbr:${param} dbp:l ?defaites_found } ORDER BY DESC(?defaites_found) LIMIT 1
+                }
+                {
+                    SELECT ?victoires_found WHERE { dbr:${param} dbp:w ?victoires_found} ORDER BY DESC(?victoires_found) LIMIT 1
+                }
+                {
+                    SELECT ?matchsNuls_found WHERE { dbr:${param} dbp:d ?matchsNuls_found} ORDER BY DESC(?matchsNuls_found) LIMIT 1
+                }
             }
-            {
-                SELECT ?victoires WHERE { dbr:${param} dbp:w ?victoires} ORDER BY DESC(?victoires) LIMIT 1
-            }
-            {
-                SELECT ?matchsNuls WHERE { dbr:${param} dbp:d ?matchsNuls} ORDER BY DESC(?matchsNuls) LIMIT 1
-            }
-
+            bind(coalesce(?defaites_found, "pas de données") as ?defaites)
+            bind(coalesce(?victoires_found, "pas de données") as ?victoires)
+            bind(coalesce(?matchsNuls_found, "pas de données") as ?matchsNuls)
             ?stade dbo:seatingCapacity ?nombreDePlaces.
             BIND(STR(?nombreDePlaces) as ?nombreDePlacesDansLeStade).
             bind( "pas de données"  as ?default_win).
