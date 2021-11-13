@@ -395,13 +395,20 @@ datalist {
     align-items: center;
 }
 
-#qualified-europe .element-name {
-    width: 400px;
+#qualified-europe .competition {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-top: 80px;
 }
 
-#qualified-europe .element-name:first-child {
+#qualified-europe .competition:first-child {
     margin-top: 10px;
+}
+
+#qualified-europe .element-name {
+    width: 400px;
 }
 
 #qualified-europe .qualified-clubs {
@@ -428,6 +435,7 @@ datalist {
 }
 
 #statistics  {
+    display: none;
     margin-top: 80px;
 }
 
