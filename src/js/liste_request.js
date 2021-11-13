@@ -120,8 +120,7 @@ export class listeRequest{
         select distinct
         STR(?winners) as ?TitleWins  
         where{  
-        ?teamlink dbo:season dbr:${yearSeason}; 
-        rdfs:label ?team; 
+        ?teamlink rdfs:label ?team;
         ^dbp:winners ?winnerslink.
         ?winnerslink rdfs:label ?winners. 
         FILTER(SUBSTR(STR(?winners), strlen(STR(?winners)),1)="1" && lang(?winners)="en" && lang(?team) ="en") 
