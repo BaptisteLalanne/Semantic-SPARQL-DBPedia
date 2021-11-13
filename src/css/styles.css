@@ -92,11 +92,6 @@ datalist {
     text-transform: uppercase;
 }
 
-.header-page img {
-    height: 100px;
-    margin-left: 100px;
-}
-
 #page-elements {
     display: flex;
     flex-direction: column;
@@ -111,11 +106,15 @@ datalist {
 }
 
 .page-element .element-name {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 10px 50px;
     background: #CDFB0A;
     transform: skew(-30deg,0deg);
-    height: 50px;
+    height: auto;
+    min-height: 60px;
+    max-height: 100px;
     text-align: center;
     width: 360px;
     position: relative;
@@ -162,21 +161,6 @@ datalist {
     font-weight: 300;
     margin-top: 30px;
     text-align: justify;
-}
-
-.page-element .img-content {
-    background-image: url("../../resources/img/stade/Intérieur_POL.jpg");
-    background-size: cover;
-    width: 500px;
-    height: 300px;
-    position: relative;
-    left: -80px;
-    margin-top: 10px;
-    border: none;
-}
-
-.page-element .content-with-img {
-    display: inline-block;
 }
 
 .page-element .many-content {
