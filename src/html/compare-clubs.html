@@ -15,24 +15,30 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     <script src="../js/request.js"></script>
+    <script src="../js/lib.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="icon" href="../../resources/ligue1logo carre.png">
 </head>
 <body class="page-infos">
+<div id = "middleSpinner">
+    <div id="spinner" class="spinner-grow" role="status">
+        <span class="sr-only col">Loading...</span>
+    </div>
+</div>
 <button class="btn ligue1-button-outline my-2 my-sm-0 go-home" onclick="window.location.href = 'index.html'">Accueil</button>
 <div>
     <div class="header-page comparaison-element page-element">
         <div class="header-comparaison">
             <div class="header-title">
-                <h1>Olympique Lyonnais</h1>
+                <h1 id="nomEquipe1"></h1>
             </div>
         </div>
         <div class="compare-element-container"></div>
         <div class="header-comparaison">
             <div class="header-title">
-                <h1>Olympique de marseille</h1>
+                <h1 id="nomEquipe2"></h1>
             </div>
         </div>
     </div>
@@ -40,7 +46,7 @@
         <div class="comparaison-element page-element">
             <div class="value-container">
                 <div class="element-content team-score">
-                    <p>4</p>
+                    <p id="classementEquipe1"></p>
                 </div>
             </div>
             <div class="compare-element-container">
@@ -50,14 +56,14 @@
             </div>
             <div class="value-container">
                 <div class="element-content">
-                    <p>15</p>
+                    <p id="classementEquipe2"></p>
                 </div>
             </div>
         </div>
         <div class="comparaison-element page-element">
             <div class="value-container">
                 <div class="element-content team-score">
-                    <p>30</p>
+                    <p id="nombreVictoires1"></p>
                 </div>
             </div>
             <div class="compare-element-container">
@@ -67,14 +73,14 @@
             </div>
             <div class="value-container">
                 <div class="element-content">
-                    <p>0</p>
+                    <p id="nombreVictoires2"></p>
                 </div>
             </div>
         </div>
         <div class="comparaison-element page-element">
             <div class="value-container">
                 <div class="element-content">
-                    <p>6</p>
+                    <p id="nombreDefaites1"></p>
                 </div>
             </div>
             <div class="compare-element-container">
@@ -84,14 +90,14 @@
             </div>
             <div class="value-container">
                 <div class="element-content team-score">
-                    <p>5</p>
+                    <p id="nombreDefaites2"></p>
                 </div>
             </div>
         </div>
         <div class="comparaison-element page-element">
             <div class="value-container">
                 <div class="element-content">
-                    <p>2</p>
+                    <p id="nombreNuls1"></p>
                 </div>
             </div>
             <div class="compare-element-container">
@@ -101,14 +107,14 @@
             </div>
             <div class="value-container">
                 <div class="element-content">
-                    <p>33</p>
+                    <p id="nombreNuls2"></p>
                 </div>
             </div>
         </div>
         <div class="comparaison-element page-element">
             <div class="value-container">
                 <div class="element-content team-score">
-                    <p>134585</p>
+                    <p id="butsMarques1"></p>
                 </div>
             </div>
             <div class="compare-element-container">
@@ -118,14 +124,14 @@
             </div>
             <div class="value-container">
                 <div class="element-content">
-                    <p>1</p>
+                    <p id="butsMarques2"></p>
                 </div>
             </div>
         </div>
         <div class="comparaison-element page-element">
             <div class="value-container">
                 <div class="element-content team-score">
-                    <p>3</p>
+                    <p id="butsEncaisses1"></p>
                 </div>
             </div>
             <div class="compare-element-container">
@@ -135,14 +141,14 @@
             </div>
             <div class="value-container">
                 <div class="element-content">
-                    <p>457</p>
+                    <p id="butsEncaisses2"></p>
                 </div>
             </div>
         </div>
         <div class="comparaison-element page-element">
             <div class="value-container">
                 <div class="element-content">
-                    <p>59187</p>
+                    <p id="capaciteStade1"></p>
                 </div>
             </div>
             <div class="compare-element-container">
@@ -152,7 +158,7 @@
             </div>
             <div class="value-container">
                 <div class="element-content team-score">
-                    <p>65712</p>
+                    <p id="capaciteStade2"></p>
                 </div>
             </div>
         </div>
@@ -165,30 +171,30 @@
                 </div>
             </div>
             <div class="comparaison-element page-element">
-                <div class="score-value-container">
-                    <div class="many-content">
-                        <div class="element-content team-score">
-                            <p>Saint-Etienne</p>
+                <div class="score-value-container" id="largeVictoire_result">
+                    <div class="many-content containerLargeVictoire">
+                        <div class="element-content team-score team1">
+                            <p></p>
                         </div>
                         <div class="element-content score">
-                            <p>0 - 5</p>
+                            <p></p>
                         </div>
-                        <div class="element-content team-score">
-                            <p>Olympique Lyonnais</p>
+                        <div class="element-content team-score team2">
+                            <p></p>
                         </div>
                     </div>
                 </div>
                 <div class="compare-element-container"></div>
-                <div class="score-value-container">
-                    <div class="many-content">
-                        <div class="element-content team-score">
-                            <p>Olympique de marseille</p>
+                <div class="score-value-container" id="largeVictoire_result2">
+                    <div class="many-content containerLargeVictoire">
+                        <div class="element-content team-score team1">
+                            <p></p>
                         </div>
                         <div class="element-content score">
-                            <p>1 - 0</p>
+                            <p></p>
                         </div>
-                        <div class="element-content team-score">
-                            <p>Association Sportive de Monaco Football Club SA</p>
+                        <div class="element-content team-score team2">
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -203,30 +209,30 @@
                 </div>
             </div>
             <div class="comparaison-element page-element">
-                <div class="score-value-container">
-                    <div class="many-content">
-                        <div class="element-content team-score">
-                            <p>Saint-Etienne</p>
+                <div class="score-value-container" id="largeDefaite_result">
+                    <div class="many-content containerLargeDefaite">
+                        <div class="element-content team-score team1">
+                            <p></p>
                         </div>
                         <div class="element-content score">
-                            <p>0 - 5</p>
+                            <p></p>
                         </div>
-                        <div class="element-content team-score">
-                            <p>Olympique Lyonnais</p>
+                        <div class="element-content team-score team2">
+                            <p></p>
                         </div>
                     </div>
                 </div>
                 <div class="compare-element-container"></div>
-                <div class="score-value-container">
-                    <div class="many-content">
-                        <div class="element-content team-score">
-                            <p>Olympique de marseille</p>
+                <div class="score-value-container" id="largeDefaite_result2">
+                    <div class="many-content containerLargeDefaite">
+                        <div class="element-content team-score team1">
+                            <p></p>
                         </div>
                         <div class="element-content score">
-                            <p>1 - 4</p>
+                            <p></p>
                         </div>
-                        <div class="element-content team-score">
-                            <p>Olympique Lyonnais</p>
+                        <div class="element-content team-score team2">
+                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -235,4 +241,7 @@
     </div>
 </div>
 </body>
+
+<script type="module" src="../js/compare-clubs.js"></script>
+
 </html>

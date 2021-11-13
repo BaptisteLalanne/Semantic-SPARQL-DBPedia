@@ -437,4 +437,54 @@ export class listeRequest{
             } 
         `;
     }
+
+    static compareClub = (param) => {
+        return `
+        PREFIX dbo: <http://dbpedia.org/ontology/>
+        PREFIX dbr: <http://dbpedia.org/resource/>
+        PREFIX dbp: <http://dbpedia.org/property/>
+        select ?resultat as ?classement, STR(?nom) as ?nom, (?nombreButsEncaissesExterieur + ?nombreButsEncaissesDomicile) as ?nombresButsEncaisses,  (?nombreButsMarquesExterieur + ?nombreButsMarquesDomicile) as ?nombresButsMarques, ?victoires, ?defaites,
+        ?matchsNuls, ?nombreDePlacesDansLeStade, STR(?plusLargeVictoire_noString) as ?plusLargeVictoire, STR(?plusLargeDefaite_noString) as ?plusLargeDefaite
+        where {
+            dbr:${param} dbp:leagueResult ?resultat;
+            dbo:team ?nomLink;
+            dbp:aga ?nombreButsEncaissesExterieur;
+            dbp:agf ?nombreButsMarquesExterieur;
+            dbp:hga ?nombreButsEncaissesDomicile;
+            dbp:hgf ?nombreButsMarquesDomicile;
+            dbo:ground ?stade.
+            
+            bind( "pas de données" as ?default_nom).
+            optional {
+            ?nomLink dbp:fullname ?nomFound.
+            }
+            bind(coalesce(?nomFound, ?default_nom) as ?nom)
+
+            {
+                SELECT ?defaites WHERE { dbr:${param} dbp:l ?defaites} ORDER BY DESC(?defaites) LIMIT 1
+            }
+            {
+                SELECT ?victoires WHERE { dbr:${param} dbp:w ?victoires} ORDER BY DESC(?victoires) LIMIT 1
+            }
+            {
+                SELECT ?matchsNuls WHERE { dbr:${param} dbp:d ?matchsNuls} ORDER BY DESC(?matchsNuls) LIMIT 1
+            }
+
+            ?stade dbo:seatingCapacity ?nombreDePlaces.
+            BIND(STR(?nombreDePlaces) as ?nombreDePlacesDansLeStade).
+            bind( "pas de données"  as ?default_win).
+            optional {
+                dbr:${param} dbp:largestWin ?bigWin.
+            }
+            bind(coalesce(?bigWin, ?default_win) as ?plusLargeVictoire_noString)
+
+            bind( "pas de données"  as ?default_loss).
+            optional {
+                dbr:${param} dbp:largestLoss ?bigLoss.
+            }
+            bind(coalesce(?bigLoss, ?default_loss) as ?plusLargeDefaite_noString)
+        }
+        `;
+    }
+
 }
