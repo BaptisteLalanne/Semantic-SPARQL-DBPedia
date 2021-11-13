@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("club_global_research.js");
 
     // get dom elements
-    let description_result = document.querySelector("#description-element");
+    let description_result = document.querySelector("#description");
     let teamname_result = document.querySelector("#teamname_result");
     let classement_result = document.querySelector("#classement_result");
     let topscorer_result = document.querySelector("#topscorer_result");
@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         // display results
 
+        console.log(description_result);
         description_result.innerHTML= description;
         teamname_result.innerHTML = nomClub;
         classement_result.innerHTML = classement;
