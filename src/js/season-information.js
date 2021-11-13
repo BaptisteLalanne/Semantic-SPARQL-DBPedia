@@ -11,7 +11,8 @@ const statistics = document.getElementById('statistics');
 window.addEventListener('load', function (){
     hideAllComponents();
     loadTableRank();
-    loadQualifiedEurope()
+    loadQualifiedEurope();
+    loadStatistics();
 });
 
 tableRankButton.addEventListener('click', showTableRank);
@@ -83,11 +84,10 @@ function loadTableRank() {
 }
 
 function loadQualifiedEurope() {
-    let req = "";
     let championsLeague = [];
     let europaLeague = [];
     let europaConferenceLeague = [];
-    req = listeRequest.qualifiedEurope();
+    let req = listeRequest.qualifiedEurope();
     search(req, (data) => {
         let tab_objects = data.results.bindings;
 
@@ -126,6 +126,77 @@ function loadQualifiedEurope() {
 }
 
 function loadStatistics() {
+    let req = listeRequest.statistics();
+
+    function fillValues(tabValues, idElement) {
+        let statisticNode = document.getElementById(idElement);
+        let valueNode = statisticNode.lastElementChild;
+        for (let value of tabValues) {
+            let node = valueNode.cloneNode(true);
+            node.querySelector("p").innerHTML = value;
+            statisticNode.appendChild(node);
+        }
+        valueNode.remove();
+    }
+
+    function fillScoreValues(tabValues, idElement) {
+        let statisticNode = document.getElementById(idElement);
+        let valueNode = statisticNode.lastElementChild;
+        for (let value of tabValues) {
+            let node = valueNode.cloneNode(true);
+            const regexScore = /\s[0-9]+.[0-9]+\s/
+            const score = value.match(regexScore)[0];
+            const team1 = value.substring(0,value.indexOf(score));
+            const team2 = value.substring(value.indexOf(score)+score.length)
+            node.firstElementChild.querySelector("p").innerHTML = team1
+            node.lastElementChild.querySelector("p").innerHTML = team2
+            node.querySelector(".score").querySelector("p").innerHTML = score.trim()
+            statisticNode.appendChild(node);
+        }
+        valueNode.remove();
+    }
+
+    search(req, (data) => {
+        let tab_objects = data.results.bindings;
+
+        let tabMeilleurButeur = [];
+        let tabPlusLargeVictoireDomicile = [];
+        let tabPlusLargeVictoireExterieur = [];
+        let tabPlusGrosScore = [];
+        let tabPlusLongueSerieVictoire = [];
+        let tabPlusLongueSerieDefaite = [];
+        let tabPlusLongueSerieSansVictoire = [];
+        let tabPlusLongueSerieSansDefaite = [];
+
+        for (let o of tab_objects) {
+            const meilleurButeur = o["meilleurButeur"]["value"];
+            const plusLargeVictoireDomicile = o["plusLargeVictoireDomicile"]["value"];
+            const plusLargeVictoireExterieur = o["plusLargeVictoireExterieur"]["value"];
+            const plusGrosScore = o["plusGrosScore"]["value"];
+            const plusLongueSerieVictoire = o["plusLongueSerieVictoire"]["value"];
+            const plusLongueSerieDefaite = o["plusLongueSerieDefaite"]["value"];
+            const plusLongueSerieSansVictoire = o["plusLongueSerieSansVictoire"]["value"];
+            const plusLongueSerieSansDefaite = o["plusLongueSerieSansDefaite"]["value"];
+            if (!tabMeilleurButeur.includes(meilleurButeur)) tabMeilleurButeur.push(meilleurButeur)
+            if (!tabPlusLargeVictoireDomicile.includes(plusLargeVictoireDomicile)) tabPlusLargeVictoireDomicile.push(plusLargeVictoireDomicile)
+            if (!tabPlusLargeVictoireExterieur.includes(plusLargeVictoireExterieur)) tabPlusLargeVictoireExterieur.push(plusLargeVictoireExterieur)
+            if (!tabPlusGrosScore.includes(plusGrosScore)) tabPlusGrosScore.push(plusGrosScore)
+            if (!tabPlusLongueSerieVictoire.includes(plusLongueSerieVictoire)) tabPlusLongueSerieVictoire.push(plusLongueSerieVictoire)
+            if (!tabPlusLongueSerieDefaite.includes(plusLongueSerieDefaite)) tabPlusLongueSerieDefaite.push(plusLongueSerieDefaite)
+            if (!tabPlusLongueSerieSansVictoire.includes(plusLongueSerieSansVictoire)) tabPlusLongueSerieSansVictoire.push(plusLongueSerieSansVictoire)
+            if (!tabPlusLongueSerieSansDefaite.includes(plusLongueSerieSansDefaite)) tabPlusLongueSerieSansDefaite.push(plusLongueSerieSansDefaite)
+        }
+
+        fillValues(tabMeilleurButeur, "buteur");
+        fillValues(tabPlusLongueSerieVictoire, "serie-victoires");
+        fillValues(tabPlusLongueSerieDefaite, "serie-defaites");
+        fillValues(tabPlusLongueSerieSansVictoire, "serie-sans-victoires");
+        fillValues(tabPlusLongueSerieSansDefaite, "serie-sans-defaites");
+
+        fillScoreValues(tabPlusLargeVictoireDomicile, "victoire-domicile");
+        fillScoreValues(tabPlusLargeVictoireExterieur, "victoire-exterieur");
+        fillScoreValues(tabPlusGrosScore, "plus-buts");
+    });
     statistics.style.display = 'block';
 }
 

@@ -346,6 +346,38 @@ export class listeRequest{
         `
     }
 
+    static statistics = () => {
+        return `
+        PREFIX dbo: <http://dbpedia.org/ontology/>
+        PREFIX dbr: <http://dbpedia.org/resource/>
+        PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+        select STR(?nomMeilleurButeur) as ?meilleurButeur, STR(?biggestHomeWin) as ?plusLargeVictoireDomicile, STR(?biggestAwayWin) as ?plusLargeVictoireExterieur, STR(?longestUnbeaten) as ?plusLongueSerieSansDefaite, STR(?plusLongueSerieSansVictoire_noString) as ?plusLongueSerieSansVictoire, STR(?longestLooses) as ?plusLongueSerieDefaite, STR(?longestWins) as ?plusLongueSerieVictoire, STR(?highScore) as ?plusGrosScore
+        where {
+        dbr:2020–21_Ligue_1 dbp:leagueTopscorer ?topButeur;
+        dbp:biggestHomeWin ?biggestHomeWin;
+        dbp:biggestAwayWin ?biggestAwayWin;
+        dbp:highestScoring ?highScore;
+        dbp:longestLosses ?longestLooses;
+        dbp:longestUnbeaten ?longestUnbeaten;
+        dbp:longestWins ?longestWins;
+        dbp:longestWinless ?longestWinless.
+        ?topButeur dbp:name ?nomMeilleurButeur.
+        FILTER(strlen(STR(?longestWinless)) != 0)
+        bind( ?longestWinless  as ?default_winless).
+        optional {
+        ?longestWinless dbp:fullname ?winlessName.
+        }
+        bind(coalesce(?winlessName, ?longestWinless) as ?plusLongueSerieSansVictoire_noString)
+        FILTER(strlen(STR(?longestUnbeaten)) != 0)
+        FILTER(strlen(STR(?longestWins)) != 0)
+        FILTER(strlen(STR(?longestLooses)) != 0)
+        FILTER(!STRSTARTS(?highScore,"--"))
+        FILTER(SUBSTR(STR(?biggestHomeWin), 0,1)!="-")
+        FILTER(SUBSTR(STR(?biggestAwayWin), 0,1)!="-")
+        } 
+        `
+    }
+
     static searchTeam = (param) => {
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
