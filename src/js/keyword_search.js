@@ -22,7 +22,7 @@ function makeSearch(event) {
     } else{
         // get query parameters (GET)
         let params = get_query();
-        search_query = decodeURI(params["search"]).replace("+", " ");
+        search_query = decodeURI(params["search"]).replaceAll("+", " ");
         searchInput.value = search_query;
     }
     // Make query on each input
