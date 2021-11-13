@@ -34,7 +34,6 @@ function showTableRank() {
         for (let o of tab_objects) {
             tab_clubs[o["Rank"]["value"]] = o["Clubs"]["value"];
         }
-
         let rank_node = document.getElementById("table-rank").lastElementChild;
         let i =1;
         for (let t of Object.values(tab_clubs)) {
@@ -46,11 +45,11 @@ function showTableRank() {
             p2.innerHTML = t;
             document.getElementById("table-rank").appendChild(node);
             i++;
-
         }
         rank_node.remove();
     });
-
+    hideSpinner();
+    tableRank.style.display='compact';
 }
 
 function showQualifiedEurope() {
@@ -59,6 +58,7 @@ function showQualifiedEurope() {
         qualifiedEurope.classList.remove('d-none');
         qualifiedEuropeButton.classList.replace('ligue1-button-outline', 'ligue1-button');
     }
+    qualifiedEurope.style.display('inline');
 }
 
 function showStatistics() {
@@ -67,14 +67,21 @@ function showStatistics() {
         statistics.classList.remove('d-none');
         statisticsButton.classList.replace('ligue1-button-outline', 'ligue1-button');
     }
+    statistics.style.display('inline');
+
 }
 
 function hideAllComponents() {
     tableRankButton.classList.replace('ligue1-button', 'ligue1-button-outline');
     qualifiedEuropeButton.classList.replace('ligue1-button', 'ligue1-button-outline');
     statisticsButton.classList.replace('ligue1-button', 'ligue1-button-outline');
-
     tableRank.classList.add('d-none');
     qualifiedEurope.classList.add('d-none');
     statistics.classList.add('d-none');
+}
+
+
+function hideSpinner() {
+    document.getElementById('spinner').remove();
+    document.getElementById('middleSpinner').remove();
 }
