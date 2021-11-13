@@ -361,13 +361,17 @@ export class listeRequest{
         STR(?EuropaConferenceLeague) as ?EuropaConferenceLeague  
         Where{   
         dbr:${yearSeason} dbp:continentalcup1Qualifiers ?ChampionsLeaguelink; 
-        dbp:continentalcup2Qualifiers ?EuropaLeaguelink; 
-        dbp:continentalcup3Qualifiers ?EuropaConferenceLeaguelink. 
+        dbp:continentalcup2Qualifiers ?EuropaLeaguelink. 
         ?ChampionsLeaguelink rdfs:label ?ChampionsLeague. 
         ?EuropaLeaguelink rdfs:label ?EuropaLeague. 
-        ?EuropaConferenceLeaguelink rdfs:label ?EuropaConferenceLeague. 
-        FILTER(lang(?ChampionsLeague)="en" && lang(?EuropaLeague)="en" && \tlang(?EuropaConferenceLeague)="en")  
-        } 
+        bind( "pas de données" as ?default_EuropaConferenceLeague).
+        optional {
+        dbr:${yearSeason} dbp:continentalcup3Qualifiers ?EuropaConferenceLeaguelinkFound.
+        ?EuropaConferenceLeaguelinkFound rdfs:label ?EuropaConferenceLeagueFound. 
+        }
+        bind(coalesce(?EuropaConferenceLeagueFound, ?default_EuropaConferenceLeague) as ?EuropaConferenceLeague)
+        FILTER(lang(?ChampionsLeague)="en" && lang(?EuropaLeague)="en" && lang(?EuropaConferenceLeague)="en")  
+        }  
         `
     }
 
