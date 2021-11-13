@@ -202,7 +202,17 @@ export class listeRequest{
         dbr:${param} dbp:chairman ?presidentDBPCurrent.
         ?presidentDBPCurrent dbp:name ?nameDbp.
         }
-        bind(coalesce(?nameDbp, ?presidentChoisiv2) as ?presidentChoisiv3)
+        bind(coalesce(?nameDbp, ?presidentChoisiv2) as ?presidentChoisiv2bis)
+        
+        optional {
+        dbr:${param} dbp:chairman ?presidentDBPCurrentLabel.
+            ?presidentDBPCurrentLabel rdfs:label ?nameLabel.
+            filter(langMatches(lang(?nameLabel),"fr"))
+        }
+        bind(coalesce(?nameLabel, ?presidentChoisiv2bis) as ?presidentChoisiv3)
+
+        
+
         }`;
     }
 
