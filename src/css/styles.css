@@ -360,10 +360,10 @@ datalist {
 }
 
 #table-rank {
+    display: none;
     margin: auto;
     margin-top: 80px;
     font-weight: 900;
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;

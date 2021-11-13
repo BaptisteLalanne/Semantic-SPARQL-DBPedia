@@ -49,7 +49,7 @@ function showTableRank() {
         rank_node.remove();
     });
     hideSpinner();
-    tableRank.style.display='compact';
+    tableRank.style.display='flex';
 }
 
 function showQualifiedEurope() {
