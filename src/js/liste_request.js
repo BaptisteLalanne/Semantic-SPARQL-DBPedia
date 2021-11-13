@@ -6,7 +6,6 @@ export class listeRequest{
         select ?competition
         where {
         ?competition dbp:competition dbr:Ligue_1.
-        FILTER(contains(STR(?competition),"Ligue_1"))
         }
         `;
     }
@@ -111,10 +110,7 @@ export class listeRequest{
         }`;
     }
 
-    static palmaresLigue1 = (param) => { 
-        const year = sessionStorage.getItem('yearSeason')
-        const yearSeason = year + "_Ligue_1"
-
+    static palmaresLigue1 = (param) => {
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
         select distinct
@@ -252,8 +248,7 @@ export class listeRequest{
     }
 
     static listClub = () => {
-        const year = sessionStorage.getItem('yearSeason')
-        const yearSeason = year + "_Ligue_1"
+        const yearSeason = sessionStorage.getItem('yearSeason')
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbr: <http://dbpedia.org/resource/>
@@ -269,8 +264,7 @@ export class listeRequest{
     }
 
     static listJoueur = () => {
-        const year = sessionStorage.getItem('yearSeason')
-        const yearSeason = year + "_Ligue_1"
+        const yearSeason = sessionStorage.getItem('yearSeason')
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbr: <http://dbpedia.org/resource/>
@@ -291,8 +285,7 @@ export class listeRequest{
     }
 
     static listJoueurLien = () => {
-        const year = sessionStorage.getItem('yearSeason')
-        const yearSeason = year + "_Ligue_1"
+        const yearSeason = sessionStorage.getItem('yearSeason')
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbr: <http://dbpedia.org/resource/>
@@ -331,8 +324,7 @@ export class listeRequest{
     }
 
     static rank_club = () => {
-        const year = sessionStorage.getItem('yearSeason')
-        const yearSeason = year + "_Ligue_1"
+        const yearSeason = sessionStorage.getItem('yearSeason')
     return `
     PREFIX dbo: <http://dbpedia.org/ontology/>
     PREFIX dbp: <http://dbpedia.org/property/>
@@ -350,8 +342,7 @@ export class listeRequest{
     }
 
     static qualifiedEurope = () => {
-        const year = sessionStorage.getItem('yearSeason')
-        const yearSeason = year + "_Ligue_1"
+        const yearSeason = sessionStorage.getItem('yearSeason')
         return `
         PREFIX dbr: <http://dbpedia.org/resource/>
         PREFIX dbp: <http://dbpedia.org/property/>
@@ -376,8 +367,7 @@ export class listeRequest{
     }
 
     static statistics = () => {
-        const year = sessionStorage.getItem('yearSeason')
-        const yearSeason = year + "_Ligue_1"
+        const yearSeason = sessionStorage.getItem('yearSeason')
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbr: <http://dbpedia.org/resource/>
@@ -410,8 +400,7 @@ export class listeRequest{
     }
 
     static searchTeam = (param) => {
-        const year = sessionStorage.getItem('yearSeason')
-        const yearSeason = year + "_Ligue_1"
+        const yearSeason = sessionStorage.getItem('yearSeason')
 
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
@@ -430,8 +419,7 @@ export class listeRequest{
     }
 
     static searchPlayer = (param) => {
-        const year = sessionStorage.getItem('yearSeason')
-        const yearSeason = year + "_Ligue_1"
+        const yearSeason = sessionStorage.getItem('yearSeason')
 
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
