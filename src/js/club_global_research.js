@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         // display results
 
-        console.log(description_result);
         description_result.innerHTML= description;
         teamname_result.innerHTML = nomClub;
         classement_result.innerHTML = classement;
@@ -140,7 +139,9 @@ document.addEventListener("DOMContentLoaded", function() {
         let joueurs= {};
 
         for (let o of objects_found) {
-            joueurs[o["joueursNoms"]["value"]]= o["joueursLink"]["value"];
+            if(o["joueursNoms"]["value"]!="pas de données") {
+                joueurs[o["joueursNoms"]["value"]] = o["joueursLink"]["value"];
+            }
         }
 
         // display results
