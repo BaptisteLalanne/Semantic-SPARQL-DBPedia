@@ -32,23 +32,24 @@
         <div id="top-loader" class="d-flex flex-column align-items-center justify-content-center">
             <div id="little-spinner" class="lds-littleloader"><div></div><div></div><div></div></div>
         </div>
-        <div id="search_page_container" class="container pt-5">
+        <div id="search_page_container" class="container">
 
-            <h1>Résultat de la recherche "<span id="searched"></span>"</h1>
-
-            <h3 class="font-weight-light title mb-4">Chercher par mot clé</h3>
-            <form class="form-inline my-2 my-lg-0 d-flex justify-content-center" action="./search.html" method="GET">
+            <form class="form-inline mb-5 d-flex justify-content-center align-items-center" action="./search.html" method="GET">
+                <h3 class="font-weight-light title m-0 mr-4">Chercher par mot clé</h3>
                 <input id="searchInput" autofocus class="form-control mr-sm-2" type="search" name="search" placeholder="Rechercher" aria-label="Rechercher">
             </form>
+
+            <h1 class="title font-weight-light">Résultat de la recherche "<span id="searched"></span>"</h1>
+
             <div id="results_container" class="container mt-5">
     
                 <div id="teams_container">
-                    <h2>Clubs</h2>
+                    <h2 class="font-weight-light">Clubs</h2>
                     <div id="teams_results" class="row"></div>
                 </div>
     
-                <div id="players_containers">
-                    <h2>Joueurs</h2>
+                <div id="players_containers" class="mt-5">
+                    <h2 class="font-weight-light">Joueurs</h2>
                     <div id="players_results" class="row"></div>
                 </div>
     
