@@ -51,10 +51,13 @@ document.addEventListener("DOMContentLoaded", function() {
         // clone the node of the clubs
         let clubs_node = document.getElementById("clubs").lastElementChild;
         for(let c of clubs_found) {
-            let cln = clubs_node.cloneNode(true);
-            let p = cln.querySelector("p");
-            p.innerHTML = c;
-            document.getElementById("clubs").appendChild(cln);
+            if(c.trim()!="") {
+                let cln = clubs_node.cloneNode(true);
+                let p = cln.querySelector("p");
+                p.innerHTML = c;
+                document.getElementById("clubs").appendChild(cln);
+            }
+
         }
         clubs_node.remove();
 
@@ -62,10 +65,12 @@ document.addEventListener("DOMContentLoaded", function() {
         // clone the node of the national teams
         let national_team_node = document.getElementById("national_teams").lastElementChild;
         for(let x of national_teams_found) {
-            let cln = national_team_node.cloneNode(true);
-            let p = cln.querySelector("p");
-            p.innerHTML = x;
-            document.getElementById("national_teams").appendChild(cln);
+            if(x.trim()!="") {
+                let cln = national_team_node.cloneNode(true);
+                let p = cln.querySelector("p");
+                p.innerHTML = x;
+                document.getElementById("national_teams").appendChild(cln);
+            }
         }
         national_team_node.remove();
 
