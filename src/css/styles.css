@@ -277,10 +277,6 @@ datalist {
     align-items: center;
 }
 
-.comparaison-element .compare-element-container {
-    width: 360px;
-}
-
 .comparaison-element .value-container {
     width: calc(50% - (360px/2));
     display: flex;
