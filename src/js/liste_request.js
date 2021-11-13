@@ -1,4 +1,16 @@
 export class listeRequest{
+    static allSeasons = () => {
+        return `
+        PREFIX dbr: <http://dbpedia.org/resource/>
+        PREFIX dbp: <http://dbpedia.org/property/>
+        select ?competition
+        where {
+        ?competition dbp:competition dbr:Ligue_1.
+        FILTER(contains(STR(?competition),"Ligue_1"))
+        }
+        `;
+    }
+
     static pageClub = (param) => {
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
@@ -99,13 +111,16 @@ export class listeRequest{
         }`;
     }
 
-    static palmaresLigue1 = (param) => {
+    static palmaresLigue1 = (param) => { 
+        const year = sessionStorage.getItem('yearSeason')
+        const yearSeason = year + "_Ligue_1"
+
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
         select distinct
         STR(?winners) as ?TitleWins  
         where{  
-        ?teamlink dbo:season dbr:2020–21_Ligue_1; 
+        ?teamlink dbo:season dbr:${yearSeason}; 
         rdfs:label ?team; 
         ^dbp:winners ?winnerslink.
         ?winnerslink rdfs:label ?winners. 
@@ -218,7 +233,8 @@ export class listeRequest{
         }`;
     }
 
-    static pageClubJoueurs = (param) => {
+    static pageClubJoueurs = (param) => { 
+
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbr: <http://dbpedia.org/resource/>
@@ -237,6 +253,8 @@ export class listeRequest{
     }
 
     static listClub = () => {
+        const year = sessionStorage.getItem('yearSeason')
+        const yearSeason = year + "_Ligue_1"
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbr: <http://dbpedia.org/resource/>
@@ -244,7 +262,7 @@ export class listeRequest{
         PREFIX foaf: <http://xmlns.com/foaf/0.1/>
         PREFIX rdfs: <https://www.w3.org/2000/01/rdf-schema#/>        
         select  ?team ?teamName where {
-                    ?team dbo:position dbr:2020–21_Ligue_1.
+                    ?team dbo:position dbr:${yearSeason}.
                     ?team dbo:team ?club.
                     ?club dbp:fullname ?teamName.
                     FILTER(strlen(?teamName) != 0).
@@ -252,17 +270,19 @@ export class listeRequest{
     }
 
     static listJoueur = () => {
+        const year = sessionStorage.getItem('yearSeason')
+        const yearSeason = year + "_Ligue_1"
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbr: <http://dbpedia.org/resource/>
         PREFIX dbp: <http://dbpedia.org/property/>
         select distinct STR(?nomJoueurTerminus) as ?joueursNoms
         where {
-        ?team dbo:position dbr:2020–21_Ligue_1.
+        ?team dbo:position dbr:${yearSeason}.
         ?team dbp:name ?joueurs.
         bind( ?joueurs  as ?default_joueur).
         optional {
-        ?club dbo:position dbr:2020–21_Ligue_1.
+        ?club dbo:position dbr:${yearSeason}.
         ?club dbp:name ?clubJoueur.
         ?clubJoueur dbp:name ?nomsJoueurs.
         }
@@ -272,13 +292,15 @@ export class listeRequest{
     }
 
     static listJoueurLien = () => {
+        const year = sessionStorage.getItem('yearSeason')
+        const yearSeason = year + "_Ligue_1"
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbr: <http://dbpedia.org/resource/>
         PREFIX dbp: <http://dbpedia.org/property/>
         select ?lienDuJoueur, STR(?nomDuJoueur) as ?nomDuJoueur
         where {
-            ?team dbo:position dbr:2020–21_Ligue_1.
+            ?team dbo:position dbr:${yearSeason}.
             bind( "null"  as ?default_name).
             ?team dbp:name ?joueurs.
             optional {
@@ -298,10 +320,10 @@ export class listeRequest{
         PREFIX dbr: <http://dbpedia.org/resource/>
         PREFIX dbp: <http://dbpedia.org/property/>
         select distinct ?team ?currentSeason ?topScorer Where{ 
-            ?team dbo:season dbr:2020–21_Ligue_1; 
+            ?team dbo:season dbr:${yearSeason}; 
             ^dbp:club ?currentSeason . 
             ?currentSeason rdf:type dbo:SportsSeason; 
-            dbo:position dbr:2020–21_Ligue_1; 
+            dbo:position dbr:${yearSeason}; 
             dbp:leagueTopscorer ?topScorer. 
             ?topScorer rdf:type dbo:Person. 
             } 
@@ -310,6 +332,8 @@ export class listeRequest{
     }
 
     static rank_club = () => {
+        const year = sessionStorage.getItem('yearSeason')
+        const yearSeason = year + "_Ligue_1"
     return `
     PREFIX dbo: <http://dbpedia.org/ontology/>
     PREFIX dbp: <http://dbpedia.org/property/>
@@ -317,7 +341,7 @@ export class listeRequest{
     PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     select xsd:integer(?rankstr) as ?Rank STR(?realname) as ?Clubs
     where {
-        ?team dbo:position dbr:2020–21_Ligue_1;
+        ?team dbo:position dbr:${yearSeason};
         dbp:leagueResult ?rankstr.
         ?team dbo:team ?realteam.
         ?realteam dbp:clubname ?realname.
@@ -327,6 +351,8 @@ export class listeRequest{
     }
 
     static qualifiedEurope = () => {
+        const year = sessionStorage.getItem('yearSeason')
+        const yearSeason = year + "_Ligue_1"
         return `
         PREFIX dbr: <http://dbpedia.org/resource/>
         PREFIX dbp: <http://dbpedia.org/property/>
@@ -335,7 +361,7 @@ export class listeRequest{
         STR(?EuropaLeague) as ?EuropaLeague  
         STR(?EuropaConferenceLeague) as ?EuropaConferenceLeague  
         Where{   
-        dbr:2020–21_Ligue_1 dbp:continentalcup1Qualifiers ?ChampionsLeaguelink; 
+        dbr:${yearSeason} dbp:continentalcup1Qualifiers ?ChampionsLeaguelink; 
         dbp:continentalcup2Qualifiers ?EuropaLeaguelink; 
         dbp:continentalcup3Qualifiers ?EuropaConferenceLeaguelink. 
         ?ChampionsLeaguelink rdfs:label ?ChampionsLeague. 
@@ -347,13 +373,15 @@ export class listeRequest{
     }
 
     static statistics = () => {
+        const year = sessionStorage.getItem('yearSeason')
+        const yearSeason = year + "_Ligue_1"
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbr: <http://dbpedia.org/resource/>
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
         select STR(?nomMeilleurButeur) as ?meilleurButeur, STR(?biggestHomeWin) as ?plusLargeVictoireDomicile, STR(?biggestAwayWin) as ?plusLargeVictoireExterieur, STR(?longestUnbeaten) as ?plusLongueSerieSansDefaite, STR(?plusLongueSerieSansVictoire_noString) as ?plusLongueSerieSansVictoire, STR(?longestLooses) as ?plusLongueSerieDefaite, STR(?longestWins) as ?plusLongueSerieVictoire, STR(?highScore) as ?plusGrosScore
         where {
-        dbr:2020–21_Ligue_1 dbp:leagueTopscorer ?topButeur;
+        dbr:${yearSeason} dbp:leagueTopscorer ?topButeur;
         dbp:biggestHomeWin ?biggestHomeWin;
         dbp:biggestAwayWin ?biggestAwayWin;
         dbp:highestScoring ?highScore;
@@ -379,6 +407,9 @@ export class listeRequest{
     }
 
     static searchTeam = (param) => {
+        const year = sessionStorage.getItem('yearSeason')
+        const yearSeason = year + "_Ligue_1"
+
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbr: <http://dbpedia.org/resource/>
@@ -386,7 +417,7 @@ export class listeRequest{
         PREFIX foaf: <http://xmlns.com/foaf/0.1/>
         PREFIX rdfs: <https://www.w3.org/2000/01/rdf-schema#/>        
         select  ?team ?teamName where {
-                    ?team dbo:position dbr:2020–21_Ligue_1.
+                    ?team dbo:position dbr:${yearSeason}.
                     ?team dbo:team ?club.
                     ?club dbp:fullname ?teamName.
                     FILTER(strlen(?teamName) != 0).
@@ -396,13 +427,16 @@ export class listeRequest{
     }
 
     static searchPlayer = (param) => {
+        const year = sessionStorage.getItem('yearSeason')
+        const yearSeason = year + "_Ligue_1"
+
         return `
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbr: <http://dbpedia.org/resource/>
         PREFIX dbp: <http://dbpedia.org/property/>
         select ?lienDuJoueur, STR(?nomDuJoueur) as ?nomDuJoueur
         where {
-            ?team dbo:position dbr:2020–21_Ligue_1.
+            ?team dbo:position dbr:${yearSeason}.
             bind( "null"  as ?default_name).
             ?team dbp:name ?joueurs.
             optional {

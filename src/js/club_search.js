@@ -1,6 +1,6 @@
 import { listeRequest } from "./liste_request.js";
 
-document.addEventListener("DOMContentLoaded", function() {
+export function loadClubSearch() {
 
     // get dom elements
     let inputClubs = document.querySelector("#inputClubs");
@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let submit_club_compare = document.querySelector("#submit_club_compare");
     let inputCompareClub1 = document.querySelector("#inputCompareClub1");
     let inputCompareClub2 = document.querySelector("#inputCompareClub2");
+
+    $(clubs).children().remove()
+    $(clubs_compare).children().remove()
 
     // disable submit buttons by default
     submit_club.disabled = true;
@@ -80,4 +83,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
     });
 
-});
+}

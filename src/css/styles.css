@@ -55,6 +55,12 @@ datalist {
     left: 20px;
 }
 
+#selection-season {
+    background: #091c3e;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
 /* ---------------------------- */
 /*      CLUB AND PLAYER PAGE    */
 /* ---------------------------- */

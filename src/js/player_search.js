@@ -1,11 +1,13 @@
 import { listeRequest } from "./liste_request.js";
 
-document.addEventListener("DOMContentLoaded", function() {
+export function loadPlayerSearch() {
 
     // get dom elements
     let inputJoueurs = document.querySelector("#inputJoueurs");
     let players = document.querySelector("#joueurs");
     let submit_player = document.querySelector("#submit_player");
+
+    $(players).children().remove()
 
     // disable submit buttons by default
     submit_player.disabled = true;
@@ -45,11 +47,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     hideSpinner();
     showContent();
-});
+}
 
 function hideSpinner() {
-    document.getElementById('spinner').remove();
-    document.getElementById('middleSpinner').remove();
+    document.getElementById('spinner').classList.add('d-none');
+    document.getElementById('middleSpinner').classList.add('d-none');
 }
 
 function showContent() {
