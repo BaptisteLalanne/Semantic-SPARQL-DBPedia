@@ -33,18 +33,22 @@ document.addEventListener("DOMContentLoaded", function() {
         let plusLargeVictoire={};
         let plusLargeDefaite={};
 
+        nomClub= objects_found[0]["nom"]["value"];
+        description = objects_found[0]["description"]["value"];
         for (let o of objects_found) {
             presidents[o["nomPresident"]["value"]]=o["nomPresident"]["value"];
             entraineurs[o["nomEntraineur"]["value"]]= o["nomEntraineur"]["value"];
-            description = o["description"]["value"];
-            nomClub= o["nom"]["value"];
             classement= o["classement"]["value"];
             meilleurbuteur= o["meilleurButeur"]["value"];
             meilleurbuteurLink= o["meilleurButeurLink"]["value"];
             nomStade = o["nomStade"]["value"];
             placesStade = o["nombreDePlacesDansLeStade"]["value"];
-            plusLargeVictoire[o["plusLargeVictoire"]["value"]] = o["plusLargeVictoire"]["value"];
-            plusLargeDefaite[o["plusLargeDefaite"]["value"]] = o["plusLargeDefaite"]["value"];
+            if(o["plusLargeVictoire"]["value"].includes("–")){
+                plusLargeVictoire[o["plusLargeVictoire"]["value"]] = o["plusLargeVictoire"]["value"];
+            }
+            if(o["plusLargeDefaite"]["value"].includes("–")){
+                plusLargeDefaite[o["plusLargeDefaite"]["value"]] = o["plusLargeDefaite"]["value"];
+            }
 
         }
         // display results
