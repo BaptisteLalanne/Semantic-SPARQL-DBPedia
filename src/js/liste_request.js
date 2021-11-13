@@ -130,6 +130,7 @@ export class listeRequest{
         bind( "pas de données" as ?default_nom).
         optional {
         ?nomLink dbp:fullname ?nomFound.
+        FILTER(strlen(STR(?nomFound))>1)
         }
         bind(coalesce(?nomFound, ?default_nom) as ?nom)
         
@@ -210,6 +211,7 @@ export class listeRequest{
             filter(langMatches(lang(?nameLabel),"fr"))
         }
         bind(coalesce(?nameLabel, ?presidentChoisiv2bis) as ?presidentChoisiv3)
+        FILTER(strlen(STR(?presidentChoisiv3))>1)
 
         
 
