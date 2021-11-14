@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function() {
     search(request, (data) => {
 
         let objects_found = data.results.bindings;
-        console.log(objects_found);
         let description;
         let presidents={};
         let nomClub ;
@@ -135,7 +134,6 @@ document.addEventListener("DOMContentLoaded", function() {
     search(requestJoueurs, (data) => {
 
         let objects_found = data.results.bindings;
-        console.log(objects_found);
         let joueurs= {};
 
         for (let o of objects_found) {

@@ -9,10 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let resource1 = decodeURI(params["resource1"]).replace("+", "_");
     let resource2 = decodeURI(params["resource2"]).replace("+", "_");
 
-    // debug messages
-    console.log(resource1);
-    console.log(resource2);
-
     let req_team1 = listeRequest.compareClub(resource1);
     let req_team2 = listeRequest.compareClub(resource2);
 
@@ -155,7 +151,6 @@ function resultatLargeMatch(o,type) {
 function putScoresInPage(id, tabToPrint) {
     // clone the nodes of the biggestWins
     let biggestWin_node = document.getElementById(id).lastElementChild;
-    console.log(biggestWin_node);
     for (let t of tabToPrint) {
         let node = biggestWin_node.cloneNode(true);
         let div1 = node.querySelector(".team-score.team1");

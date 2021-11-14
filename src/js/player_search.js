@@ -35,12 +35,10 @@ export function loadPlayerSearch() {
     submit_player.addEventListener("click", (e) => {
 
         let user_input = inputJoueurs.value;
-        console.log(tab_players)
         if (user_input in tab_players) {
             let tmp_resource = tab_players[user_input].split("/");
             window.location.href = "./player.html?resource=" + encodeURI(tmp_resource[tmp_resource.length-1]);
         } else {
-            console.log(user_input);
             inputJoueurs.classList.add("is-invalid");
         }
 

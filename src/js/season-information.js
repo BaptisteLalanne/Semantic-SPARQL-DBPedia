@@ -193,8 +193,6 @@ function loadStatistics() {
         fillValues(tabPlusLongueSerieSansVictoire, "serie-sans-victoires");
         fillValues(tabPlusLongueSerieSansDefaite, "serie-sans-defaites");
 
-        console.log(tabPlusLargeVictoireDomicile)
-        console.log(tabPlusLargeVictoireExterieur)
         fillScoreValues(tabPlusLargeVictoireDomicile, "victoire-domicile");
         fillScoreValues(tabPlusLargeVictoireExterieur, "victoire-exterieur");
         fillScoreValues(tabPlusGrosScore, "plus-buts");
