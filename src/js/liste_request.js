@@ -134,8 +134,13 @@ export class listeRequest{
         dbr:${param} dbp:leagueResult ?resultat;
         dbo:team ?nomLink;
         dbp:leagueTopscorer ?meilleurButeurLink;
-        dbo:manager ?coach;
-        dbo:ground ?stade.
+        dbo:manager ?coach.
+        
+        bind( "pas de données" as ?default_stade).
+        optional {
+        dbr:${param} dbo:ground ?stadeFound.
+        }
+        bind(coalesce(?stadeFound, ?default_stade) as ?stade)
         
         bind( "pas de données" as ?default_nom).
         optional {
@@ -372,7 +377,14 @@ export class listeRequest{
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX dbr: <http://dbpedia.org/resource/>
         PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-        select STR(?nomMeilleurButeur) as ?meilleurButeur, STR(?biggestHomeWin) as ?plusLargeVictoireDomicile, STR(?biggestAwayWin) as ?plusLargeVictoireExterieur, STR(?longestUnbeaten) as ?plusLongueSerieSansDefaite, STR(?plusLongueSerieSansVictoire_noString) as ?plusLongueSerieSansVictoire, STR(?longestLooses) as ?plusLongueSerieDefaite, STR(?longestWins) as ?plusLongueSerieVictoire, STR(?highScore) as ?plusGrosScore
+        select STR(?nomMeilleurButeur) as ?meilleurButeur, 
+        STR(?biggestHomeWin) as ?plusLargeVictoireDomicile, 
+        STR(?biggestAwayWin) as ?plusLargeVictoireExterieur, 
+        STR(?plusLongueSerieSansDefaite_noString) as ?plusLongueSerieSansDefaite, 
+        STR(?plusLongueSerieSansVictoire_noString) as ?plusLongueSerieSansVictoire, 
+        STR(?plusLongueSerieDefaite_noString) as ?plusLongueSerieDefaite, 
+        STR(?plusLongueSerieVictoire_noString) as ?plusLongueSerieVictoire, 
+        STR(?highScore) as ?plusGrosScore
         where {
         dbr:${yearSeason} dbp:leagueTopscorer ?topButeur;
         dbp:biggestHomeWin ?biggestHomeWin;
@@ -383,18 +395,34 @@ export class listeRequest{
         dbp:longestWins ?longestWins;
         dbp:longestWinless ?longestWinless.
         ?topButeur dbp:name ?nomMeilleurButeur.
-        FILTER(strlen(STR(?longestWinless)) != 0)
-        bind( ?longestWinless  as ?default_winless).
+        
         optional {
         ?longestWinless dbp:fullname ?winlessName.
         }
         bind(coalesce(?winlessName, ?longestWinless) as ?plusLongueSerieSansVictoire_noString)
-        FILTER(strlen(STR(?longestUnbeaten)) != 0)
-        FILTER(strlen(STR(?longestWins)) != 0)
-        FILTER(strlen(STR(?longestLooses)) != 0)
-        FILTER(!STRSTARTS(?highScore,"--"))
-        FILTER(SUBSTR(STR(?biggestHomeWin), 0,1)!="-")
-        FILTER(SUBSTR(STR(?biggestAwayWin), 0,1)!="-")
+        FILTER(strlen(STR(?plusLongueSerieSansVictoire_noString)) != 0)
+        
+        optional {
+        ?longestUnbeaten dbp:fullname ?unbeatenName.
+        }
+        bind(coalesce(?unbeatenName, ?longestUnbeaten) as ?plusLongueSerieSansDefaite_noString)
+        FILTER(strlen(STR(?plusLongueSerieSansDefaite_noString)) != 0)
+        
+        optional {
+        ?longestWins dbp:fullname ?winsName.
+        }
+        bind(coalesce(?winsName, ?longestWins) as ?plusLongueSerieVictoire_noString)
+        FILTER(strlen(STR(?plusLongueSerieVictoire_noString)) != 0)
+        
+        optional {
+        ?longestLooses dbp:fullname ?loosesName.
+        }
+        bind(coalesce(?loosesName, ?longestLooses) as ?plusLongueSerieDefaite_noString)
+        FILTER(strlen(STR(?plusLongueSerieDefaite_noString)) != 0)
+        
+        FILTER(!STRSTARTS(?highScore,"--") && strlen(STR(?highScore)) != 0)
+        FILTER(SUBSTR(STR(?biggestHomeWin), 0,1)!="-" && strlen(STR(?biggestHomeWin)) != 0)
+        FILTER(SUBSTR(STR(?biggestAwayWin), 0,1)!="-" && strlen(STR(?biggestAwayWin)) != 0)
         } 
         `
     }
