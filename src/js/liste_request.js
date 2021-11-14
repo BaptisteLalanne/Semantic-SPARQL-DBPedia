@@ -168,27 +168,6 @@ export class listeRequest{
         }`
     }
 
-    static listJoueur = () => {
-        const yearSeason = sessionStorage.getItem('yearSeason')
-        return `
-        PREFIX dbo: <http://dbpedia.org/ontology/>
-        PREFIX dbr: <http://dbpedia.org/resource/>
-        PREFIX dbp: <http://dbpedia.org/property/>
-        select distinct STR(?nomJoueurTerminus) as ?joueursNoms
-        where {
-        ?team dbo:position dbr:${yearSeason}.
-        ?team dbp:name ?joueurs.
-        bind( ?joueurs  as ?default_joueur).
-        optional {
-        ?club dbo:position dbr:${yearSeason}.
-        ?club dbp:name ?clubJoueur.
-        ?clubJoueur dbp:name ?nomsJoueurs.
-        }
-        bind(coalesce(?nomsJoueurs, ?default_joueur) as ?nomJoueurTerminus)
-        } 
-        `
-    }
-
     static listJoueurLien = () => {
         const yearSeason = sessionStorage.getItem('yearSeason')
         return `
